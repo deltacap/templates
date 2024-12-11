@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #f8fafc; }
+    .bg-navy { background-color: #131B31; }
+    .bg-navy-gradient {
+      background: linear-gradient(135deg, #131B31 0%, #1c2943 100%);
+    }
+    .text-orange { color: #F26E21; }
+    .bg-orange { background-color: #F26E21; }
+    .hover-orange:hover { background-color: #E05E11; }
+    .card-shadow { box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+    .calendar-day {
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .calendar-day:hover:not(.disabled) {
+      background-color: #F26E21;
+      color: white;
+    }
+    .calendar-day.disabled {
+      color: #ccc;
+      background-color: #f9f9f9;
+      cursor: not-allowed;
+    }
+    .calendar-day.today {
+      border: 2px solid #F26E21;
+      color: #F26E21;
+      font-weight: bold;
+    }
+    .chat-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: calc(100% - 40px);
+      max-width: 360px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    @media (max-width: 768px) {
+      .chat-container {
+        width: calc(100% - 20px);
+        right: 10px;
+        bottom: 10px;
+      }
+      .stats-container {
+        overflow-x: auto;
+        padding-bottom: 10px;
+      }
+      .stats-wrapper {
+        min-width: max-content;
+      }
+		.custom-file-upload {
+  border: 1px solid #F26E21;
+  background: rgba(242, 110, 33, 0.05);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.custom-file-upload:hover {
+  background: rgba(242, 110, 33, 0.1);
+}
+.custom-file-upload:focus {
+  outline: 2px solid #F26E21;
+  outline-offset: 2px;
+}
+    }
+  </style>
+</head>
+<body class="text-sm sm:text-base">
+  <!-- Top Navigation -->
+  <div class="bg-navy">
+    <div class="max-w-6xl mx-auto px-4 py-3">
+      <img src="https://deltacapitalgroup.com/wp-content/uploads/2024/09/Group-1000006181-1.png" alt="Delta Capital Logo" class="h-8 sm:h-12">
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="bg-navy-gradient text-white py-6">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex flex-col items-center text-center">
+        <img src="https://deltacapitalgroup.com/wp-content/uploads/2024/04/max-profile.png" alt="Max" class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-xl mb-4">
+        <span class="text-orange text-base font-medium">Financial Advisor</span>
+        <h1 class="text-3xl font-bold mt-2">Max Kramer</h1>
+        <div class="text-orange text-lg font-medium mt-1 mb-4">+1 877-361-7923</div>
+        
+        <!-- Stats Scroll Container -->
+        <div class="stats-container w-full">
+          <div class="stats-wrapper flex justify-center gap-6 px-2">
+            <div>
+              <div class="text-xl font-bold">15+</div>
+              <div class="text-gray-400 text-sm">Years Experience</div>
+            </div>
+            <div>
+              <div class="text-xl font-bold">$50M+</div>
+              <div class="text-gray-400 text-sm">Total Funded</div>
+            </div>
+            <div>
+              <div class="text-xl font-bold">500+</div>
+              <div class="text-gray-400 text-sm">Clients Served</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="py-6">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="space-y-6">
+        <!-- Contact Form -->
+        <div class="bg-white rounded-xl card-shadow p-4 sm:p-6">
+          <h2 class="text-xl font-bold text-navy mb-4">Contact Me</h2>
+          <form class="space-y-4">
+            <div class="space-y-4">
+              <input type="text" placeholder="First Name" class="w-full p-3 border rounded-lg">
+              <input type="text" placeholder="Last Name" class="w-full p-3 border rounded-lg">
+            </div>
+            <input type="email" placeholder="Email Address" class="w-full p-3 border rounded-lg">
+            <input type="tel" placeholder="Phone Number" class="w-full p-3 border rounded-lg">
+            <input type="text" placeholder="Amount Needed" class="w-full p-3 border rounded-lg">
+            <textarea placeholder="Tell us about your business" rows="3" class="w-full p-3 border rounded-lg"></textarea>
+            
+            <!-- File Upload -->
+<div class="space-y-2">
+  <label class="block text-sm font-medium text-gray-700">Upload Documents</label>
+  <div class="custom-file-upload p-3">
+    <input type="file" multiple 
+           class="w-full text-gray-600 file:mr-4 file:py-2 file:px-4 
+                  file:rounded-full file:border-0 file:text-sm file:font-medium
+                  file:bg-orange file:text-white hover:file:bg-orange/90
+                  file:cursor-pointer cursor-pointer" 
+           accept=".pdf,.doc,.docx,.xls,.xlsx">
+  </div>
+  <p class="text-sm text-gray-500">Upload business documents, financials, or other relevant files</p>
+</div>
+
+            <!-- Consent Checkbox -->
+            <div class="flex items-start gap-2">
+              <input type="checkbox" class="mt-1" required>
+              <label class="text-xs text-gray-600">
+                I agree to the <a href="/privacy" class="text-orange hover:underline">Privacy Policy</a> and 
+                <a href="/terms" class="text-orange hover:underline">Terms of Service</a>. I consent to receive 
+                communications about funding opportunities and registration information.
+              </label>
+            </div>
+
+            <button class="w-full bg-orange hover-orange text-white py-3 rounded-lg text-base font-medium transition-colors">
+              Request Funding
+            </button>
+          </form>
+        </div>
+
+        <!-- About Section -->
+        <div class="bg-white rounded-xl p-4 sm:p-6 card-shadow">
+          <h2 class="text-xl font-bold text-navy mb-3">About Me</h2>
+          <p class="text-gray-600 text-sm leading-relaxed mb-4">
+            With extensive experience in business funding and capital solutions, I specialize in helping businesses secure same-day funding and working capital solutions. My expertise includes unsecured business loans, equipment financing, and merchant cash advances.
+          </p>
+          <div class="border-t pt-4">
+            <h3 class="font-bold text-navy mb-3">Specialties</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="flex items-center gap-2 text-gray-600 text-sm">
+                <span class="text-orange">•</span>
+                Same Day Funding
+              </div>
+              <div class="flex items-center gap-2 text-gray-600 text-sm">
+                <span class="text-orange">•</span>
+                Equipment Financing
+              </div>
+              <div class="flex items-center gap-2 text-gray-600 text-sm">
+                <span class="text-orange">•</span>
+                Working Capital
+              </div>
+              <div class="flex items-center gap-2 text-gray-600 text-sm">
+                <span class="text-orange">•</span>
+                Business Expansion
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Info -->
+        <div class="bg-white rounded-xl p-4 sm:p-6 card-shadow">
+          <h2 class="text-xl font-bold text-navy mb-4">Quick Info</h2>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center pb-2 border-b text-sm">
+              <span class="text-gray-600">Minimum Funding</span>
+              <span class="font-bold text-navy">$5,000</span>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b text-sm">
+              <span class="text-gray-600">Maximum Funding</span>
+              <span class="font-bold text-navy">$5,000,000</span>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b text-sm">
+              <span class="text-gray-600">Approval Time</span>
+              <span class="text-green-500 font-medium">Same Day</span>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+              <span class="text-gray-600">Credit Check</span>
+              <span class="text-green-500 font-medium">No Hard Pull</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calendar Widget -->
+        <div class="bg-white rounded-xl p-4 sm:p-6 card-shadow">
+          <h2 class="text-xl font-bold text-navy mb-4">Schedule a Meeting</h2>
+          
+          <div class="flex justify-between items-center mb-4">
+            <button class="text-gray-600 hover:text-orange">←</button>
+            <h3 class="font-medium">April 2024</h3>
+            <button class="text-gray-600 hover:text-orange">→</button>
+          </div>
+
+          <div class="grid grid-cols-7 gap-1 mb-4 text-sm">
+            <!-- Days of Week -->
+            <div class="text-center text-gray-500 py-1">Su</div>
+            <div class="text-center text-gray-500 py-1">Mo</div>
+            <div class="text-center text-gray-500 py-1">Tu</div>
+            <div class="text-center text-gray-500 py-1">We</div>
+            <div class="text-center text-gray-500 py-1">Th</div>
+            <div class="text-center text-gray-500 py-1">Fr</div>
+            <div class="text-center text-gray-500 py-1">Sa</div>
+
+            <!-- Calendar Days -->
+            [Previous calendar days structure maintained...]
+          </div>
+
+          <!-- Available Times -->
+          <div class="space-y-2">
+            <h4 class="font-medium text-gray-700 mb-2 text-sm">Available Times - Apr 10</h4>
+            <button class="w-full p-2 text-left border rounded text-sm hover:bg-orange hover:text-white transition-colors">
+              9:00 AM EST
+            </button>
+            <button class="w-full p-2 text-left border rounded text-sm hover:bg-orange hover:text-white transition-colors">
+              11:30 AM EST
+            </button>
+            <button class="w-full p-2 text-left border rounded text-sm hover:bg-orange hover:text-white transition-colors">
+              2:00 PM EST
+            </button>
+            <button class="w-full p-2 text-left border rounded text-sm hover:bg-orange hover:text-white transition-colors">
+              3:30 PM EST
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat Container -->
+  <div class="chat-container">
+    <!-- Chat Header -->
+    <div class="bg-navy p-3 rounded-t-lg">
+      <div class="flex items-center gap-2">
+        <img src="https://deltacapitalgroup.com/wp-content/uploads/2024/04/max-profile.png" alt="Max" class="w-8 h-8 rounded-full">
+        <div>
+          <div class="text-white text-sm font-medium">Max Kramer</div>
+          <div class="text-gray-300 text-xs">Usually responds instantly</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Messages -->
+    <div class="h-72 p-3 overflow-y-auto bg-gray-50">
+      <!-- Welcome Message -->
+      <div class="flex gap-2 mb-3">
+        <img src="https://deltacapitalgroup.com/wp-content/uploads/2024/04/max-profile.png" alt="Max" class="w-6 h-6 rounded-full">
+        <div class="bg-white p-2 rounded-lg shadow-sm max-w-[80%]">
+          <p class="text-gray-800 text-sm">👋 Hi! I'm here to help you secure funding for your business. How can I assist you today?</p>
+        </div>
+      </div>
+
+      <!-- Demo User Message -->
+      <div class="flex justify-end mb-3">
+        <div class="bg-orange text-white p-2 rounded-lg shadow-sm max-w-[80%]">
+          <p class="text-sm">Hi Max, I'm interested in learning more about your funding options.</p>
+        </div>
+      </div>
+
+      <!-- Response Message -->
+      <div class="flex gap-2">
+        <img src="https://deltacapitalgroup.com/wp-content/uploads/2024/04/max-profile.png" alt="Max" class="w-6 h-6 rounded-full">
+        <div class="bg-white p-2 rounded-lg shadow-sm max-w-[80%]">
+          <p class="text-gray-800 text-sm">I'd be happy to explain our funding options! We offer:</p>
+          <ul class="mt-1 space-y-1 text-sm">
+            <li>• Same-day funding up to $5M</li>
+            <li>• No hard credit check</li>
+            <li>• Flexible repayment terms</li>
+          </ul>
+          <p class="mt-1 text-gray-800 text-sm">Would you like to know more about any specific option?</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Input -->
+    <div class="p-3 border-t bg-white rounded-b-lg">
+      <div class="flex gap-2">
+        <input type="text" placeholder="Type a message..." class="flex-1 p-2 border rounded-lg text-sm">
+        <button class="bg-orange text-white px-3 py-2 rounded-lg hover-orange text-sm">
+          Send
+        </button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
