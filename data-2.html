@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Upload Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/lucide.min.js"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <div class="max-w-6xl mx-auto p-6 space-y-8">
+    <!-- Header -->
+    <header class="flex justify-between items-center">
+      <div class="w-48 h-12 bg-gray-100 flex items-center justify-center text-gray-400">
+        Company Logo
+      </div>
+      <h1 class="text-2xl font-semibold">Data Upload Portal</h1>
+    </header>
+
+    <!-- Upload Area -->
+    <section 
+      class="border-2 border-dashed rounded-lg p-8 text-center bg-white shadow-lg hover:shadow-xl transition-shadow"
+      ondragenter="toggleDragActive(true)"
+      ondragleave="toggleDragActive(false)"
+      ondragover="preventDefault" 
+      ondrop="handleDrop(event)"
+    >
+      <svg class="mx-auto w-12 h-12 text-gray-400 mb-4" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2">
+        <path d="M3 16l3.2-4.8A1 1 0 017 11h10a1 1 0 01.8.4l3.2 4.8H3zm2 0h14" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <h3 class="text-lg font-medium">Upload your CSV file</h3>
+      <p class="text-gray-500">Drag and drop your file here or</p>
+      <button class="px-4 py-2 mt-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+        Select File
+      </button>
+    </section>
+
+    <!-- Results Section -->
+    <section>
+      <h2 class="text-xl font-semibold">Upload Results</h2>
+      <div class="border rounded-lg overflow-hidden mt-4">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lead ID</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">First Name</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Name</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Enricher</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Details</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <!-- Example Row -->
+            <tr class="hover:bg-gray-50">
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">LD001</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm">John</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm">Doe</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm">Data Service A</td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2">
+                    <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  Success
+                </span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-blue-600 hover:text-blue-800">
+                <button onclick="viewDetails('LD001')">View Details</button>
+              </td>
+            </tr>
+            <!-- Another Example Row -->
+            <tr class="hover:bg-gray-50">
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">LD002</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm">Jane</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm">Smith</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm">Data Service B</td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2">
+                    <path d="M10 14L14 10m-4 0l4 4M5 5l14 14" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  Error
+                </span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-blue-600 hover:text-blue-800">
+                <button onclick="viewDetails('LD002')">View Details</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Details Modal -->
+    <div id="detailsModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 hidden items-center justify-center">
+      <div class="bg-white rounded-lg p-6 max-w-lg w-full space-y-4">
+        <h3 class="text-lg font-medium">Error Details</h3>
+        <p class="text-gray-500">Detailed error information will appear here...</p>
+        <button class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700" onclick="closeModal()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleDragActive(isActive) {
+      const uploadArea = document.querySelector('section[ondragenter]');
+      if (isActive) {
+        uploadArea.classList.add('border-blue-500', 'bg-blue-50');
+      } else {
+        uploadArea.classList.remove('border-blue-500', 'bg-blue-50');
+      }
+    }
+
+    function preventDefault(e) {
+      e.preventDefault();
+    }
+
+    function handleDrop(e) {
+      preventDefault(e);
+      toggleDragActive(false);
+      console.log('File dropped:', e.dataTransfer.files);
+      // Add file handling logic
+    }
+
+    function viewDetails(leadId) {
+      document.getElementById('detailsModal').classList.remove('hidden');
+      console.log('Viewing details for:', leadId);
+    }
+
+    function closeModal() {
+      document.getElementById('detailsModal').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
