@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Loan Offers - LendFlow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex items-center py-4">
+                    <span class="font-bold text-2xl text-blue-600">LendFlow</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="pt-10 pb-6 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center">
+                <h1 class="text-3xl font-bold text-gray-900 mb-2">Congratulations, TechGrow Solutions!</h1>
+                <p class="text-xl text-gray-600 mb-2">Here are your recommended approvals</p>
+                <p class="text-gray-500">Compare your pre-qualified offers and select the best option for your business</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offers Section -->
+    <div class="py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <!-- Featured Offer -->
+            <div class="mb-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl shadow-xl p-1">
+                <div class="bg-white rounded-lg p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">Featured Offer</span>
+                        <img src="/api/placeholder/120/40" alt="Bank Logo" class="h-10">
+                    </div>
+                    <div class="grid md:grid-cols-4 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">First Capital Bank</h3>
+                            <p class="text-gray-600">Business Term Loan</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Loan Amount</p>
+                            <p class="text-2xl font-bold text-gray-900">$250,000</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Monthly Payment</p>
+                            <p class="text-2xl font-bold text-gray-900">$5,240</p>
+                            <p class="text-sm text-gray-500">for 60 months</p>
+                        </div>
+                        <div class="flex items-center">
+                            <button class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                                Select Offer
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-100">
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                APR: 6.99%
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                No prepayment penalties
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Fixed monthly payments
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regular Offers Grid -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Offer 2 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Growth Capital</h3>
+                        <img src="/api/placeholder/120/40" alt="Bank Logo" class="h-8">
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Loan Amount</span>
+                            <span class="font-semibold">$200,000</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Monthly Payment</span>
+                            <span class="font-semibold">$4,450</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Term Length</span>
+                            <span class="font-semibold">48 months</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">APR</span>
+                            <span class="font-semibold">7.25%</span>
+                        </div>
+                        <button class="w-full bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition duration-300">
+                            Select Offer
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Offer 3 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Business Direct</h3>
+                        <img src="/api/placeholder/120/40" alt="Bank Logo" class="h-8">
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Loan Amount</span>
+                            <span class="font-semibold">$175,000</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Monthly Payment</span>
+                            <span class="font-semibold">$3,890</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Term Length</span>
+                            <span class="font-semibold">48 months</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">APR</span>
+                            <span class="font-semibold">7.49%</span>
+                        </div>
+                        <button class="w-full bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition duration-300">
+                            Select Offer
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Offer 4 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Enterprise Fund</h3>
+                        <img src="/api/placeholder/120/40" alt="Bank Logo" class="h-8">
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Loan Amount</span>
+                            <span class="font-semibold">$300,000</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Monthly Payment</span>
+                            <span class="font-semibold">$6,780</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Term Length</span>
+                            <span class="font-semibold">48 months</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">APR</span>
+                            <span class="font-semibold">7.85%</span>
+                        </div>
+                        <button class="w-full bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition duration-300">
+                            Select Offer
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Offer 5 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Quick Capital</h3>
+                        <img src="/api/placeholder/120/40" alt="Bank Logo" class="h-8">
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Loan Amount</span>
+                            <span class="font-semibold">$150,000</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Monthly Payment</span>
+                            <span class="font-semibold">$3,560</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Term Length</span>
+                            <span class="font-semibold">48 months</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">APR</span>
+                            <span class="font-semibold">8.15%</span>
+                        </div>
+                        <button class="w-full bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition duration-300">
+                            Select Offer
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Offer 6 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Flex Funding</h3>
+                        <img src="/api/placeholder/120/40" alt="Bank Logo" class="h-8">
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Loan Amount</span>
+                            <span class="font-semibold">$225,000</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Monthly Payment</span>
+                            <span class="font-semibold">$5,120</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Term Length</span>
+                            <span class="font-semibold">48 months</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">APR</span>
+                            <span class="font-semibold">8.25%</span>
+                        </div>
+                        <button class="w-full bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition duration-300">
+                            Select Offer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t mt-12 py-6">
+        <div class="max-w-6xl mx-auto px-4 text-center text-gray-500">
+            <p>© 2024 LendFlow. All offers are subject to credit approval and terms.</p>
+        </div>
+    </footer>
+</body>
+</html>
