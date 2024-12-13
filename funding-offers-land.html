@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FundingOffers - Small Business Financing Made Simple</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
+            backdrop-filter: blur(10px);
+        }
+
+        .custom-select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+        }
+
+        .floating-review {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+        }
+
+        .hero-background {
+            background-image: url('https://raw.githubusercontent.com/deltacap/templates/main/assets/business-owner.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-background min-h-screen">
+        <!-- Navigation -->
+        <nav class="bg-white border-b">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+                <div class="flex items-center">
+                    <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/logo-main.png" 
+                         alt="FundingOffers Logo" 
+                         class="h-16">
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section with Form -->
+        <div class="hero-section min-h-[600px] py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- Left Column -->
+                    <div class="text-left">
+                        <h1 class="text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                            Find the perfect loan for your small business.
+                        </h1>
+                        <p class="text-xl text-gray-600 mb-8">
+                            Compare options, choose your loan, and get funded with rates as low as 6.99% APR.
+                        </p>
+                        
+                        <!-- Trust Badges -->
+                        <div class="flex items-center space-x-8 mb-8">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/forbes-badge.jpg" 
+                                 alt="Forbes Badge" 
+                                 class="h-16">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/trustpilot-logo.png" 
+                                 alt="Trustpilot Rating" 
+                                 class="h-16">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/bbb-badge.png" 
+                                 alt="BBB Accredited" 
+                                 class="h-16">
+                        </div>
+                    </div>
+
+                    <!-- Right Column - Form -->
+                    <div>
+                        <div class="bg-white rounded-xl p-8 shadow-2xl">
+                            <h2 class="text-2xl font-semibold text-gray-900 mb-6">
+                                How much money are you looking for?
+                            </h2>
+                            <select class="custom-select w-full p-4 border border-gray-300 rounded-lg text-lg mb-6 appearance-none">
+                                <option value="" disabled selected>Please choose a value</option>
+                                <option value="25000">$25,000</option>
+                                <option value="50000">$50,000</option>
+                                <option value="100000">$100,000</option>
+                                <option value="250000">$250,000</option>
+                                <option value="500000">$500,000</option>
+                                <option value="1000000">$1,000,000+</option>
+                            </select>
+                            <button class="w-full bg-blue-600 text-white py-4 rounded-lg text-lg font-medium hover:bg-blue-700 transition-colors">
+                                Get Your Free Quote
+                            </button>
+                            <p class="text-center text-sm text-gray-600 mt-4">
+                                Applying is free and won't impact your credit.
+                                <a href="#" class="underline hover:text-gray-900">View Disclosure</a>
+                            </p>
+
+                            <!-- Review Integration -->
+                            <div class="mt-8 pt-6 border-t">
+                                <div class="flex items-center mb-3">
+                                    <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/trustpilot-logo.png" 
+                                         alt="Trustpilot" 
+                                         class="h-8">
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium">Excellent</p>
+                                        <p class="text-xs text-gray-500">Based on 21,289 reviews</p>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="text-gray-700 text-sm mb-2">
+                                        "Got approved for $150,000 in less than 24 hours. The process was incredibly smooth and the team was very helpful throughout."
+                                    </p>
+                                    <p class="text-sm text-gray-500">
+                                        - Michael R., Small Business Owner
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-white border-t py-12">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex flex-col items-center">
+                    <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/logo-main.png" 
+                         alt="FundingOffers Logo" 
+                         class="h-12 mb-8">
+                    
+                    <div class="flex space-x-8 mb-8">
+                        <a href="#" class="text-gray-600 hover:text-gray-900">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/instagram.png" 
+                                 alt="Instagram" 
+                                 class="h-8">
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-gray-900">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/facebook.png" 
+                                 alt="Facebook" 
+                                 class="h-8">
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-gray-900">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/twitter.png" 
+                                 alt="Twitter" 
+                                 class="h-8">
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-gray-900">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/linkedin.png" 
+                                 alt="LinkedIn" 
+                                 class="h-8">
+                        </a>
+                    </div>
+
+                    <div class="flex flex-wrap justify-center gap-x-8 gap-y-2 mb-8">
+                        <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Terms of Use</a>
+                        <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a>
+                        <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Your Privacy Choices</a>
+                    </div>
+
+                    <p class="text-sm text-gray-500 text-center">
+                        Copyright © 2024 FundingOffers. All Rights Reserved.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
