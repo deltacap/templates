@@ -34,6 +34,31 @@
             background-position: center;
             background-repeat: no-repeat;
         }
+          .hidden-form {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .hidden-form.show {
+            display: block;
+            opacity: 1;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 3px solid #3498db;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -78,22 +103,61 @@
 
                     <!-- Right Column - Form -->
                     <div>
-                        <div class="bg-white rounded-xl p-8 shadow-2xl">
-                            <h2 class="text-2xl font-semibold text-gray-900 mb-6">
-                                How much money are you looking for?
-                            </h2>
-                            <select class="custom-select w-full p-4 border border-gray-300 rounded-lg text-lg mb-6 appearance-none">
-                                <option value="" disabled selected>Please choose a value</option>
-                                <option value="25000">$25,000</option>
-                                <option value="50000">$50,000</option>
-                                <option value="100000">$100,000</option>
-                                <option value="250000">$250,000</option>
-                                <option value="500000">$500,000</option>
-                                <option value="1000000">$1,000,000+</option>
-                            </select>
-                            <button class="w-full bg-blue-600 text-white py-4 rounded-lg text-lg font-medium hover:bg-blue-700 transition-colors">
-                                Get Your Free Quote
-                            </button>
+                       <div class="bg-white rounded-xl p-8 shadow-2xl">
+    <h2 class="text-2xl font-semibold text-gray-900 mb-6">
+        How much money are you looking for?
+    </h2>
+    <select class="custom-select w-full p-4 border border-gray-300 rounded-lg text-lg mb-6 appearance-none">
+        <option value="" disabled selected>Please choose a value</option>
+        <option value="25000">$25,000</option>
+        <option value="50000">$50,000</option>
+        <option value="100000">$100,000</option>
+        <option value="250000">$250,000</option>
+        <option value="500000">$500,000</option>
+        <option value="1000000">$1,000,000+</option>
+    </select>
+    <button id="quoteButton" class="w-full bg-blue-600 text-white py-4 rounded-lg text-lg font-medium hover:bg-blue-700 transition-colors">
+        Get Your Free Quote
+    </button>
+
+    <!-- Additional Fields (Hidden Initially) -->
+    <div id="additionalFields" class="hidden-form mt-8 pt-6 border-t">
+        <h3 class="text-xl font-semibold text-green-600 mb-4">
+            Congratulations! You're approved for working capital
+        </h3>
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
+                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Enter your company name">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                <input type="tel" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="(xxx) xxx-xxxx">
+            </div>
+        </div>
+    </div>
+
+    <!-- Rep Information (Hidden Initially) -->
+    <div id="repInfo" class="hidden-form mt-8 pt-6 border-t">
+        <div class="flex items-center">
+            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/rep-photo.jpg" 
+                 alt="Max Kramer" 
+                 class="w-20 h-20 rounded-full object-cover">
+            <div class="ml-4">
+                <h4 class="text-lg font-semibold">Max Kramer</h4>
+                <p class="text-sm text-gray-600">Senior Funding Specialist</p>
+                <div class="mt-2">
+                    <a href="tel:888-555-0123" class="text-blue-600 hover:text-blue-800 font-medium">
+                        (888) 555-0123
+                    </a>
+                    <br>
+                    <a href="mailto:max.kramer@fundingoffers.com" class="text-blue-600 hover:text-blue-800 font-medium">
+                        max.kramer@fundingoffers.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
                             <p class="text-center text-sm text-gray-600 mt-4">
                                 Applying is free and won't impact your credit.
                                 <a href="#" class="underline hover:text-gray-900">View Disclosure</a>
@@ -169,5 +233,30 @@
             </div>
         </footer>
     </div>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const quoteButton = document.getElementById('quoteButton');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const additionalFields = document.getElementById('additionalFields');
+    const repInfo = document.getElementById('repInfo');
+
+    quoteButton.addEventListener('click', async function() {
+        // Show loading spinner
+        quoteButton.innerHTML = '<span class="loading"></span> Processing...';
+        quoteButton.disabled = true;
+
+        // Simulate loading delay
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        // Show additional fields with animation
+        additionalFields.classList.add('show');
+        repInfo.classList.add('show');
+
+        // Update button state
+        quoteButton.innerHTML = 'Get Your Free Quote';
+        quoteButton.disabled = false;
+    });
+});
+</script>
 </body>
 </html>
