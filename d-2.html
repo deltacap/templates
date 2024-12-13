@@ -165,11 +165,13 @@
                     <!-- Right Column - Form -->
                     <div>
                         <div class="bg-white rounded-xl p-8 shadow-2xl">
-                            <div class="step-indicator">
-                                <div class="step active" data-step="1">1</div>
-                                <div class="step" data-step="2">2</div>
-                                <div class="step" data-step="3">3</div>
-                            </div>
+                           <!-- Replace the entire step-indicator div -->
+<div class="step-indicator">
+    <div class="step active" data-step="1">1</div>
+    <div class="step" data-step="2">2</div>
+    <div class="step" data-step="3">3</div>
+    <div class="step" data-step="4">4</div>
+</div>
 
                             <!-- Step 1: Funding Amount -->
                             <div class="form-step active" id="step1">
@@ -368,10 +370,10 @@
         </footer>
     </div>
 
-    <script>
-       document.addEventListener('DOMContentLoaded', function() {
+   <script>
+document.addEventListener('DOMContentLoaded', function() {
     let currentStep = 1;
-    const totalSteps = 4; // Updated to include contact info step
+    const totalSteps = 5; // Updated to handle all steps including contact info
     const nextButton = document.getElementById('nextStep');
     
     const formatCurrency = (value) => {
@@ -400,6 +402,8 @@
             case 3:
                 return document.getElementById('monthlyRevenue').value.trim() !== '';
             case 4:
+                return true; // Approval step always valid
+            case 5:
                 const name = document.getElementById('contactName').value.trim();
                 const phone = document.getElementById('contactPhone').value.trim();
                 const email = document.getElementById('contactEmail').value.trim();
@@ -431,29 +435,27 @@
         
         // Update button text and styling
         if (step === 3) {
-            nextButton.innerHTML = `
-                Check Eligibility
+            nextButton.innerHTML = `Check Eligibility
                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            `;
+                </svg>`;
         } else if (step === 4) {
-            nextButton.innerHTML = `
-                Complete Application
+            nextButton.innerHTML = `Continue to Contact Information
                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            `;
+                </svg>`;
         } else if (step === 5) {
-            // Hide the button on the final step
+            nextButton.innerHTML = `Submit Application
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>`;
+        } else if (step === 6) {
             nextButton.style.display = 'none';
         } else {
-            nextButton.innerHTML = `
-                Continue
+            nextButton.innerHTML = `Continue
                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            `;
+                </svg>`;
         }
     }
 
@@ -490,7 +492,7 @@
             currentStep++;
             showStep(currentStep);
             nextButton.disabled = false;
-        } else if (currentStep === 4) {
+        } else if (currentStep === 5) {
             // Show loading state for final submission
             nextButton.innerHTML = '<span class="loading"></span> Submitting...';
             nextButton.disabled = true;
@@ -507,6 +509,6 @@
         }
     });
 });
-    </script>
+</script>
 </body>
 </html>
