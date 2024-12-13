@@ -219,43 +219,90 @@
                             </div>
 
                             <!-- Approval Step -->
-                            <div class="form-step" id="step4">
-                                <div class="space-y-6">
-                                    <div class="bg-green-50 p-6 rounded-lg border border-green-200 text-center">
-                                        <div class="text-3xl font-bold text-green-700 mb-3">
-                                            Congratulations!
-                                        </div>
-                                        <div class="text-4xl font-bold text-green-800 mb-4" id="approvalAmount">
-                                        </div>
-                                        <p class="text-green-700 text-xl">
-                                            You're pre-approved for funding!
-                                        </p>
-                                        <p class="text-green-600 mt-2">
-                                            Your dedicated funding specialist will contact you shortly to discuss next steps.
-                                        </p>
-                                    </div>
+<div class="form-step" id="step4">
+    <div class="space-y-6">
+        <div class="bg-green-50 p-6 rounded-lg border border-green-200 text-center">
+            <div class="text-3xl font-bold text-green-700 mb-3">
+                Congratulations!
+            </div>
+            <div class="text-4xl font-bold text-green-800 mb-4" id="approvalAmount">
+            </div>
+            <p class="text-green-700 text-xl">
+                You're pre-approved for funding!
+            </p>
+            <p class="text-green-600 mt-2">
+                Complete the form below to get connected with your dedicated funding specialist.
+            </p>
+        </div>
+    </div>
+</div>
+							
+							<!-- Contact Information Step -->
+<div class="form-step" id="step5">
+    <div class="space-y-6">
+        <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
+            <h3 class="text-xl font-semibold text-blue-800 mb-4">
+                Almost there! Enter your contact details:
+            </h3>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <input type="text" class="form-input" id="contactName" placeholder="Enter your full name" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                    <input type="tel" class="form-input" id="contactPhone" placeholder="(000) 000-0000" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <input type="email" class="form-input" id="contactEmail" placeholder="you@company.com" required>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+							<!-- Funding Specialist Step -->
+<div class="form-step" id="step6">
+    <div class="space-y-6">
+        <div class="bg-green-50 p-6 rounded-lg border border-green-200 text-center mb-6">
+            <svg class="w-16 h-16 mx-auto text-green-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <h3 class="text-2xl font-bold text-green-800 mb-2">
+                Thank you for your application!
+            </h3>
+            <p class="text-green-700">
+                Your dedicated funding specialist will be in touch shortly.
+            </p>
+        </div>
 
-                                    <div class="bg-blue-50 p-4 rounded-lg mt-6">
-                                        <div class="flex items-center gap-4">
-                                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/rep-photo.png"
-                                                 alt="Max Kramer"
-                                                 class="w-20 h-20 rounded-full object-cover">
-                                            <div>
-                                                <h4 class="text-lg font-semibold">Max Kramer</h4>
-                                                <p class="text-sm text-gray-600">Senior Funding Specialist</p>
-                                                <div class="mt-2 space-y-1">
-                                                    <a href="tel:888-555-0123" class="text-blue-600 hover:text-blue-800 block">
-                                                        (888) 555-0123
-                                                    </a>
-                                                    <a href="mailto:max@deltacapitalgroup.com" class="text-blue-600 hover:text-blue-800 block">
-                                                        max@deltacapitalgroup.com
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+        <div class="bg-white p-6 rounded-lg border shadow-md">
+            <div class="flex items-center gap-4">
+                <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/rep-photo.png"
+                     alt="Max Kramer"
+                     class="w-24 h-24 rounded-full object-cover">
+                <div>
+                    <h4 class="text-xl font-semibold text-gray-900">Max Kramer</h4>
+                    <p class="text-sm text-gray-600 mb-3">Senior Funding Specialist</p>
+                    <div class="space-y-2">
+                        <a href="tel:888-555-0123" class="flex items-center gap-2 text-blue-600 hover:text-blue-800">
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            (888) 555-0123
+                        </a>
+                        <a href="mailto:max@deltacapitalgroup.com" class="flex items-center gap-2 text-blue-600 hover:text-blue-800">
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            max@deltacapitalgroup.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
                             <!-- Form Navigation -->
                             <div class="mt-6" id="formNavigation">
@@ -322,125 +369,144 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let currentStep = 1;
-            const totalSteps = 3;
-            const nextButton = document.getElementById('nextStep');
-            const formatCurrency = (value) => {
-                return new Intl.NumberFormat('en-US', {
-                    style: 'currency',
-                    currency: 'USD',
-                    maximumFractionDigits: 0
-                }).format(value);
-            };
+       document.addEventListener('DOMContentLoaded', function() {
+    let currentStep = 1;
+    const totalSteps = 4; // Updated to include contact info step
+    const nextButton = document.getElementById('nextStep');
+    
+    const formatCurrency = (value) => {
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            maximumFractionDigits: 0
+        }).format(value);
+    };
 
-            // Handle monthly revenue input formatting
-            const monthlyRevenueInput = document.getElementById('monthlyRevenue');
-            monthlyRevenueInput.addEventListener('input', function(e) {
-                let value = e.target.value.replace(/[^0-9]/g, '');
-                if (value) {
-                    e.target.value = formatCurrency(value);
-                }
-            });
+    // Handle monthly revenue input formatting
+    const monthlyRevenueInput = document.getElementById('monthlyRevenue');
+    monthlyRevenueInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/[^0-9]/g, '');
+        if (value) {
+            e.target.value = formatCurrency(value);
+        }
+    });
 
-            function isStepValid(step) {
-                switch(step) {
-                    case 1:
-                        return document.getElementById('fundingAmount').value !== '';
-                    case 2:
-                        return document.getElementById('companyName').value.trim() !== '';
-                    case 3:
-                        return document.getElementById('monthlyRevenue').value.trim() !== '';
-                    default:
-                        return false;
-                }
+    function isStepValid(step) {
+        switch(step) {
+            case 1:
+                return document.getElementById('fundingAmount').value !== '';
+            case 2:
+                return document.getElementById('companyName').value.trim() !== '';
+            case 3:
+                return document.getElementById('monthlyRevenue').value.trim() !== '';
+            case 4:
+                const name = document.getElementById('contactName').value.trim();
+                const phone = document.getElementById('contactPhone').value.trim();
+                const email = document.getElementById('contactEmail').value.trim();
+                return name && phone && email;
+            default:
+                return true;
+        }
+    }
+
+    function updateStepIndicators(current) {
+        document.querySelectorAll('.step').forEach((step, index) => {
+            if (index + 1 === current) {
+                step.classList.add('active');
+                step.classList.remove('completed');
+            } else if (index + 1 < current) {
+                step.classList.remove('active');
+                step.classList.add('completed');
+            } else {
+                step.classList.remove('active', 'completed');
             }
+        });
+    }
 
-            function updateStepIndicators(current) {
-                document.querySelectorAll('.step').forEach((step, index) => {
-                    if (index + 1 === current) {
-                        step.classList.add('active');
-                        step.classList.remove('completed');
-                    } else if (index + 1 < current) {
-                        step.classList.remove('active');
-                        step.classList.add('completed');
-                    } else {
-                        step.classList.remove('active', 'completed');
-                    }
-                });
-            }
+    function showStep(step) {
+        document.querySelectorAll('.form-step').forEach(el => {
+            el.classList.remove('active');
+        });
+        document.getElementById(`step${step}`).classList.add('active');
+        
+        // Update button text and styling
+        if (step === 3) {
+            nextButton.innerHTML = `
+                Check Eligibility
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            `;
+        } else if (step === 4) {
+            nextButton.innerHTML = `
+                Complete Application
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            `;
+        } else if (step === 5) {
+            // Hide the button on the final step
+            nextButton.style.display = 'none';
+        } else {
+            nextButton.innerHTML = `
+                Continue
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            `;
+        }
+    }
 
-            function showStep(step) {
-                document.querySelectorAll('.form-step').forEach(el => {
-                    el.classList.remove('active');
-                });
-                document.getElementById(`step${step}`).classList.add('active');
-                
-                // Update button text
-                if (step === 3) {
-                    nextButton.innerHTML = `
-                        Check Eligibility
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                    `;
-                } else if (step === 4) {
-                    nextButton.innerHTML = `
-                        Contact Your Funding Specialist
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                    `;
-                    nextButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-                    nextButton.classList.add('bg-green-600', 'hover:bg-green-700');
-                } else {
-                    nextButton.innerHTML = `
-                        Continue
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                    `;
-                }
-            }
-
-            nextButton.addEventListener('click', async function() {
-                if (currentStep <= totalSteps && !isStepValid(currentStep)) {
-                    // Show validation error
-                    const input = document.querySelector(`#step${currentStep} input, #step${currentStep} select`);
+    nextButton.addEventListener('click', async function() {
+        if (currentStep <= totalSteps && !isStepValid(currentStep)) {
+            // Show validation error
+            const inputs = document.querySelectorAll(`#step${currentStep} input, #step${currentStep} select`);
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
                     input.classList.add('border-red-500');
                     setTimeout(() => {
                         input.classList.remove('border-red-500');
                     }, 2000);
-                    return;
-                }
-
-                if (currentStep === 3) {
-                    // Show loading state
-                    nextButton.innerHTML = '<span class="loading"></span> Processing...';
-                    nextButton.disabled = true;
-
-                    // Simulate processing delay
-                    await new Promise(resolve => setTimeout(resolve, 1500));
-                    
-                    // Calculate approval amount (4x monthly revenue)
-                    const revenueValue = parseFloat(document.getElementById('monthlyRevenue').value.replace(/[^0-9]/g, ''));
-                    const approvalAmount = revenueValue * 4;
-                    
-                    // Update approval amount display
-                    document.getElementById('approvalAmount').textContent = formatCurrency(approvalAmount);
-                    
-                    currentStep++;
-                    showStep(currentStep);
-                    nextButton.disabled = false;
-                } else if (currentStep === 4) {
-                    window.location.href = 'mailto:max@deltacapitalgroup.com';
-                } else {
-                    currentStep++;
-                    showStep(currentStep);
-                    updateStepIndicators(currentStep);
                 }
             });
-        });
+            return;
+        }
+
+        if (currentStep === 3) {
+            // Show loading state for eligibility check
+            nextButton.innerHTML = '<span class="loading"></span> Processing...';
+            nextButton.disabled = true;
+
+            // Simulate processing delay
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Calculate approval amount
+            const revenueValue = parseFloat(document.getElementById('monthlyRevenue').value.replace(/[^0-9]/g, ''));
+            const approvalAmount = revenueValue * 4;
+            
+            // Update approval amount display
+            document.getElementById('approvalAmount').textContent = formatCurrency(approvalAmount);
+            
+            currentStep++;
+            showStep(currentStep);
+            nextButton.disabled = false;
+        } else if (currentStep === 4) {
+            // Show loading state for final submission
+            nextButton.innerHTML = '<span class="loading"></span> Submitting...';
+            nextButton.disabled = true;
+
+            // Simulate submission delay
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            currentStep++;
+            showStep(currentStep);
+        } else {
+            currentStep++;
+            showStep(currentStep);
+            updateStepIndicators(currentStep);
+        }
+    });
+});
     </script>
 </body>
 </html>
