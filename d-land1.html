@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeltaCapital - Small Business Financing Made Simple</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
+            backdrop-filter: blur(10px);
+        }
+
+        .floating-review {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+        }
+
+        .hero-background {
+            background-image: url('https://raw.githubusercontent.com/deltacap/templates/main/assets/business-owner.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hidden-form {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .hidden-form.show {
+            display: block;
+            opacity: 1;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 3px solid #3498db;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .form-input {
+            @apply w-full p-3 border-2 border-blue-100 rounded-lg focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-colors;
+        }
+
+        .form-select {
+            @apply w-full p-3 text-lg appearance-none bg-white border-2 border-blue-100 rounded-lg text-gray-800 font-medium hover:border-blue-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-colors cursor-pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-background min-h-screen">
+        <!-- Navigation -->
+        <nav class="bg-white border-b">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+                <div class="flex items-center">
+                    <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/Delta-capital-Original-Color.svg" 
+                         alt="DeltaCapital Logo" 
+                         class="h-16">
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section with Form -->
+        <div class="hero-section min-h-[600px] py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- Left Column -->
+                    <div class="text-left">
+                        <h1 class="text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                            Find the perfect Funding for your small business.
+                        </h1>
+                        <p class="text-xl text-gray-600 mb-8">
+                            Compare options, choose your amount, and get funded with rates as low as 6.99% APR.
+                        </p>
+                        
+                        <!-- Trust Badges -->
+                        <div class="flex items-center space-x-8 mb-8">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/forbes-badge.jpg" 
+                                 alt="Forbes Badge" 
+                                 class="h-16">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/trustpilot-logo.png" 
+                                 alt="Trustpilot Rating" 
+                                 class="h-16">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/bbb-badge.png" 
+                                 alt="BBB Accredited" 
+                                 class="h-16">
+                        </div>
+                    </div>
+
+                    <!-- Right Column - Form -->
+                    <div>
+                        <div class="bg-white rounded-xl p-8 shadow-2xl">
+                            <form id="fundingForm" class="space-y-6">
+                                <!-- Initial Fields -->
+                                <div>
+                                    <label class="block text-lg font-semibold text-gray-900 mb-2">Company Name</label>
+                                    <input type="text" class="form-input" placeholder="Enter your company name" required>
+                                </div>
+
+                                <div>
+                                    <label class="block text-lg font-semibold text-gray-900 mb-2">Company Type</label>
+                                    <select class="form-select" required>
+                                        <option value="" disabled selected>Select your business type</option>
+                                        <option value="llc">LLC</option>
+                                        <option value="corporation">Corporation</option>
+                                        <option value="sole_proprietorship">Sole Proprietorship</option>
+                                        <option value="partnership">Partnership</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="block text-lg font-semibold text-gray-900 mb-2">How much money are you looking for?</label>
+                                    <select class="form-select" required>
+                                        <option value="" disabled selected>Select funding amount</option>
+                                        <option value="25000">$25,000</option>
+                                        <option value="50000">$50,000</option>
+                                        <option value="100000">$100,000</option>
+                                        <option value="250000">$250,000</option>
+                                        <option value="500000">$500,000</option>
+                                        <option value="1000000">$1,000,000+</option>
+                                    </select>
+                                </div>
+
+                                <button id="quoteButton" type="button" class="w-full bg-blue-600 text-white py-4 rounded-lg text-lg font-medium hover:bg-blue-700 transition-colors">
+                                    Get Your Free Quote
+                                </button>
+                            </form>
+
+                            <!-- Additional Fields (Hidden Initially) -->
+                            <div id="additionalFields" class="hidden-form mt-8 pt-6 border-t">
+                                <h3 class="text-xl font-semibold text-green-600 mb-4">
+                                    Congratulations! You're approved for working capital
+                                </h3>
+                                <form id="contactForm" class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                        <input type="text" class="form-input" placeholder="Enter your full name" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                        <input type="email" class="form-input" placeholder="Enter your email" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                        <input type="tel" class="form-input" placeholder="(xxx) xxx-xxxx" required>
+                                    </div>
+                                    <button type="submit" class="w-full bg-green-600 text-white py-4 rounded-lg text-lg font-medium hover:bg-green-700 transition-colors mt-4">
+                                        Submit Application
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- Rep Information (Hidden Initially) -->
+                            <div id="repInfo" class="hidden-form mt-8 pt-6 border-t">
+                                <div class="flex items-center">
+                                    <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/rep-photo.png" 
+                                         alt="Max Kramer" 
+                                         class="w-20 h-20 rounded-full object-cover">
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-semibold">Max Kramer</h4>
+                                        <p class="text-sm text-gray-600">Senior Funding Specialist</p>
+                                        <div class="mt-2">
+                                            <a href="tel:888-555-0123" class="text-blue-600 hover:text-blue-800 font-medium">
+                                                (888) 555-0123
+                                            </a>
+                                            <br>
+                                            <a href="mailto:max@deltacapitalgroup.com" class="text-blue-600 hover:text-blue-800 font-medium">
+                                                max@deltacapitalgroup.com
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="text-center text-sm text-gray-600 mt-4">
+                                Applying is free and won't impact your credit.
+                                <a href="#" class="underline hover:text-gray-900">View Disclosure</a>
+                            </p>
+
+                            <!-- Review Integration -->
+                            <div class="mt-8 pt-6 border-t">
+                                <div class="flex items-center mb-3">
+                                    <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/trustpilot-logo.png" 
+                                         alt="Trustpilot" 
+                                         class="h-8">
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium">Excellent</p>
+                                        <p class="text-xs text-gray-500">Based on 21,289 reviews</p>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="text-gray-700 text-sm mb-2">
+                                        "Got approved for $150,000 in less than 24 hours. The process was incredibly smooth and the team was very helpful throughout."
+                                    </p>
+                                    <p class="text-sm text-gray-500">
+                                        - Michael R., Small Business Owner
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-white border-t py-12">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex flex-col items-center">
+                    <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/Delta-capital-Original-Color.svg" 
+                         alt="DeltaCapital Logo" 
+                         class="h-12 mb-8">
+                    
+                    <div class="flex space-x-8 mb-8">
+                        <a href="#" class="text-gray-600 hover:text-gray-900">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/instagram.png" 
+                                 alt="Instagram" 
+                                 class="h-8">
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-gray-900">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/facebook.png" 
+                                 alt="Facebook" 
+                                 class="h-8">
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-gray-900">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/twitter.png" 
+                                 alt="Twitter" 
+                                 class="h-8">
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-gray-900">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/linkedin.png" 
+                                 alt="LinkedIn" 
+                                 class="h-8">
+                        </a>
+                    </div>
+
+                    <div class="flex flex-wrap justify-center gap-x-8 gap-y-2 mb-8">
+                        <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Terms of Use</a>
+                        <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a>
+                        <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Your Privacy Choices</a>
+                    </div>
+
+                    <p class="text-sm text-gray-500 text-center">
+                        Copyright © 2024 Delta Capital Group. All Rights Reserved.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const quoteButton = document.getElementById('quoteButton');
+        const additionalFields = document.getElementById('additionalFields');
+        const repInfo = document.getElementById('repInfo');
+        const contactForm = document.getElementById('contactForm');
+
+        quoteButton.addEventListener('click', async function() {
+            // Show loading spinner
+            quoteButton.innerHTML = '<span class="loading"></span> Processing...';
+            quoteButton.disabled = true;
+
+            // Simulate loading delay
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            // Show additional fields with animation
+            additionalFields.classList.add('show');
+
+            // Update button state
+            quoteButton.innerHTML = 'Get Your Free Quote';
+            quoteButton.disabled = false;
+        });
+
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            submitButton.innerHTML = '<span class="loading"></span> Processing...';
+            submitButton.disabled = true;
+
+            // Simulate form submission delay
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            // Show rep info
+            repInfo.classList.add('show');
+
+            // Update button state
+            submitButton.innerHTML = 'Application Submitted';
+            submitButton.classList.remove('bg-green-600', 'hover:bg-green-700');
+            submitButton.classList.add('bg-gray-400', 'cursor-not-allowed');
+            
+            // Scroll to the rep info section
+            repInfo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        // Add form validation if needed
+        const initialForm = document.getElementById('fundingForm');
+        const requiredFields = initialForm.querySelectorAll('[required]');
+        
+        quoteButton.addEventListener('click', function(e) {
+            let isValid = true;
+            requiredFields.forEach(field => {
+                if (!field.value) {
+                    isValid = false;
+                    field.classList.add('border-red-500');
+                } else {
+                    field.classList.remove('border-red-500');
+                }
+            });
+
+            if (!isValid) {
+                e.preventDefault();
+                quoteButton.innerHTML = 'Please Fill All Required Fields';
+                setTimeout(() => {
+                    quoteButton.innerHTML = 'Get Your Free Quote';
+                }, 2000);
+            }
+        });
+    });
+    </script>
+</body>
+</html>
