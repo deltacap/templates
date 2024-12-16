@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeltaCapital - Small Business Financing Made Simple</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f9fafb;
+        margin: 0;
+    }
+
+    .hero-section {
+        background: linear-gradient(rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
+        backdrop-filter: blur(10px);
+    }
+
+    .hero-background {
+        background-image: url('https://raw.githubusercontent.com/deltacap/templates/main/assets/business-owner.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    /* Step Indicator */
+    .step-indicator {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0;
+        margin-bottom: 2.5rem;
+        position: relative;
+    }
+
+    .step-indicator::before {
+        content: '';
+        position: absolute;
+        top: 16px;
+        left: 30px;
+        right: 30px;
+        height: 3px;
+        background: #E5E7EB;
+        z-index: 1;
+    }
+
+    .step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+        min-width: 100px;
+    }
+
+    .step-circle {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: white;
+        border: 3px solid #E5E7EB;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.75rem;
+        font-weight: 600;
+        font-size: 0.875rem;
+        color: #6B7280;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .step-label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #6B7280;
+        text-align: center;
+        transition: color 0.3s ease;
+    }
+
+    .step.active .step-circle {
+        background: #3B82F6;
+        border-color: #3B82F6;
+        color: white;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+    }
+
+    .step.active .step-label {
+        color: #1F2937;
+        font-weight: 600;
+    }
+
+    .step.completed .step-circle {
+        background: #10B981;
+        border-color: #10B981;
+        color: white;
+    }
+
+    .step.completed .step-circle::after {
+        content: '✓';
+        font-size: 1rem;
+    }
+
+    .step-indicator[data-progress="25"]::before {
+        background: linear-gradient(to right, #3B82F6 25%, #E5E7EB 25%);
+    }
+
+    .step-indicator[data-progress="50"]::before {
+        background: linear-gradient(to right, #3B82F6 50%, #E5E7EB 50%);
+    }
+
+    .step-indicator[data-progress="75"]::before {
+        background: linear-gradient(to right, #3B82F6 75%, #E5E7EB 75%);
+    }
+
+    .step-indicator[data-progress="100"]::before {
+        background: #3B82F6;
+    }
+
+    /* Form Steps */
+    .form-step {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .form-step.active {
+        display: block;
+        opacity: 1;
+    }
+
+    /* Slider Styles */
+    input[type="range"] {
+        -webkit-appearance: none;
+        height: 8px;
+        background: #EBF5FF;
+        border-radius: 4px;
+        background-image: linear-gradient(#3B82F6, #3B82F6);
+        background-repeat: no-repeat;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 24px;
+        width: 24px;
+        border-radius: 50%;
+        background: #3B82F6;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: all 0.2s ease-in-out;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+        transform: scale(1.1);
+    }
+
+    /* Form Input */
+    .form-input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid #EBF5FF;
+        border-radius: 0.5rem;
+        font-size: 1.125rem;
+        transition: all 0.2s;
+    }
+
+    .form-input:focus {
+        border-color: #3B82F6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        outline: none;
+    }
+
+    /* Select Input */
+    .form-select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 0.5rem center;
+        background-repeat: no-repeat;
+        background-size: 1.5em 1.5em;
+        padding-right: 2.5rem;
+    }
+
+    /* Loading Animation */
+    .loading {
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+        border: 3px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 3px solid #3498db;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+</head>
+<body>
+    <div class="hero-background min-h-screen">
+        <!-- Navigation -->
+        <nav class="bg-white border-b">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+                <div class="flex items-center">
+                    <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/Delta-capital-Original-Color.svg" 
+                         alt="DeltaCapital Logo" 
+                         class="h-16">
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section with Form -->
+        <div class="hero-section min-h-[600px] py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- Left Column -->
+                    <div class="text-left">
+                        <h1 class="text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                            Find the Perfect Funding for Your Small Business.
+                        </h1>
+                        <p class="text-xl text-gray-600 mb-4">
+                            Compare options, choose your amount, and get funded with rates as low as <span class="text-blue-600 font-bold">6.99% APR.</span>
+                        </p>
+                        <div class="approval-highlight">
+                            🚀 98% of Submissions Approved!
+                        </div>
+                        <p class="text-xl text-gray-600">
+                            Apply now and secure the funding your business deserves.
+                        </p>
+                        
+                        <!-- Trust Badges -->
+                        <div class="flex items-center space-x-8 mb-8">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/forbes-badge.jpg" 
+                                 alt="Forbes Badge" 
+                                 class="h-16">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/trustpilot-logo.png" 
+                                 alt="Trustpilot Rating" 
+                                 class="h-16">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/bbb-badge.png" 
+                                 alt="BBB Accredited" 
+                                 class="h-16">
+                        </div>
+                    </div>
+					<!-- Right Column - Form -->
+                    <div>
+                        <<div class="bg-white rounded-xl p-8 shadow-2xl">
+    <div class="step-indicator" data-progress="25">
+        <div class="step active">
+            <div class="step-circle">1</div>
+            <div class="step-label">Funding Amount</div>
+        </div>
+        <div class="step">
+            <div class="step-circle">2</div>
+            <div class="step-label">Company Info</div>
+        </div>
+        <div class="step">
+            <div class="step-circle">3</div>
+            <div class="step-label">Revenue</div>
+        </div>
+        <div class="step">
+            <div class="step-circle">4</div>
+            <div class="step-label">Approval</div>
+        </div>
+    </div>
+
+    <!-- Step 1: Funding Amount -->
+    <div class="form-step active" id="step1">
+        <div class="space-y-6">
+            <div class="flex items-center gap-2 text-blue-600 mb-4">
+                <h3 class="text-xl font-semibold">How much Funding Can You Use Currently?</h3>
+            </div>
+            <select class="form-input form-select" id="fundingAmount" required>
+                <option value="">Select amount...</option>
+                <option value="25000">$25,000</option>
+                <option value="50000">$50,000</option>
+                <option value="100000">$100,000</option>
+                <option value="250000">$250,000</option>
+                <option value="500000">$500,000</option>
+                <option value="1000000">$1,000,000+</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Step 2: Company Information -->
+    <div class="form-step" id="step2">
+        <div class="space-y-6">
+            <div class="flex items-center gap-2 text-blue-600 mb-4">
+                <h3 class="text-xl font-semibold">Company Information</h3>
+            </div>
+            <input type="text" class="form-input" id="companyName" placeholder="Company Name" required>
+            <select class="form-input form-select" id="companyType" required>
+                <option value="">Select company type...</option>
+                <option value="LLC">LLC</option>
+                <option value="Corporation">Corporation</option>
+                <option value="Sole Proprietorship">Sole Proprietorship</option>
+                <option value="Partnership">Partnership</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Step 3: Monthly Revenue -->
+    <div class="form-step" id="step3">
+        <div class="space-y-6">
+            <div class="flex items-center gap-2 text-blue-600 mb-4">
+                <h3 class="text-xl font-semibold">
+                    Monthly Revenue for <span id="companyDisplay"></span>
+                </h3>
+            </div>
+            <div class="space-y-4">
+                <input type="range" 
+                       min="5000" 
+                       max="1000000" 
+                       step="5000" 
+                       class="w-full h-2 bg-blue-100 rounded-lg appearance-none cursor-pointer" 
+                       id="revenueSlider">
+                <div class="text-center text-4xl font-bold text-blue-800" id="currentRevenueDisplay">$0</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 4: Approval Step -->
+    <div class="form-step" id="step4">
+        <div class="space-y-6">
+            <div class="bg-green-50 p-6 rounded-lg border border-green-200 text-center">
+                <div class="text-3xl font-bold text-green-700 mb-3">Congratulations!</div>
+                <div class="text-4xl font-bold text-green-800 mb-4" id="approvalAmount"></div>
+                <p class="text-green-700 text-xl">
+                    <span id="companyApprovalDisplay"></span> is approved for funding!
+                </p>
+            </div>
+            <div id="repInfo" class="bg-blue-50 p-4 rounded-lg mt-6"></div>
+        </div>
+    </div>
+
+    <!-- Form Navigation -->
+    <div class="mt-6" id="formNavigation">
+        <button id="nextStep" class="w-full p-4 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium flex items-center justify-center gap-2 transition-colors">
+            Continue
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+        </button>
+
+        <p class="text-center text-sm text-gray-600 mt-4">
+            Your information is secure and will not affect your credit score.
+        </p>
+    </div>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer section -->
+        <footer class="bg-white border-t py-12">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex flex-col items-center">
+                    <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/Delta-capital-Original-Color.svg" 
+                         alt="DeltaCapital Logo" 
+                         class="h-12 mb-8">
+                    
+                    <div class="flex space-x-8 mb-8">
+                        <a href="#" class="text-gray-600 hover:text-gray-900">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/instagram.png" 
+                                 alt="Instagram" 
+                                 class="h-8">
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-gray-900">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/facebook.png" 
+                                 alt="Facebook" 
+                                 class="h-8">
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-gray-900">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/twitter.png" 
+                                 alt="Twitter" 
+                                 class="h-8">
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-gray-900">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/linkedin.png" 
+                                 alt="LinkedIn" 
+                                 class="h-8">
+                        </a>
+                    </div>
+
+                    <div class="flex flex-wrap justify-center gap-x-8 gap-y-2 mb-8">
+                        <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Terms of Use</a>
+                        <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a>
+                        <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Your Privacy Choices</a>
+                    </div>
+
+                    <p class="text-sm text-gray-500 text-center">
+                        Copyright © 2024 Delta Capital Group. All Rights Reserved.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+	<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentStep = 1;
+            const totalSteps = 4;
+            const nextButton = document.getElementById('nextStep');
+            const revenueSlider = document.getElementById('revenueSlider');
+            const currentRevenueDisplay = document.getElementById('currentRevenueDisplay');
+            const companyDisplay = document.getElementById('companyDisplay');
+            const companyApprovalDisplay = document.getElementById('companyApprovalDisplay');
+            const stepIndicator = document.querySelector('.step-indicator');
+
+            // Format currency
+            const formatCurrency = (value) => {
+                return new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    maximumFractionDigits: 0
+                }).format(value);
+            };
+
+            // Show step
+            function showStep(step) {
+                document.querySelectorAll('.form-step').forEach(el => {
+                    el.classList.remove('active');
+                });
+                document.getElementById(`step${step}`).classList.add('active');
+            }
+
+            // Initialize step indicator
+            function updateStepIndicator(step) {
+                stepIndicator.setAttribute('data-current-step', step);
+                document.querySelectorAll('.step').forEach((el, index) => {
+                    el.classList.remove('active', 'completed');
+                    if (index + 1 === step) {
+                        el.classList.add('active');
+                    } else if (index + 1 < step) {
+                        el.classList.add('completed');
+                    }
+                });
+            }
+
+            // Initialize first step
+            updateStepIndicator(1);
+
+            // Update slider display
+            revenueSlider.addEventListener('input', function() {
+                const value = parseInt(this.value);
+                currentRevenueDisplay.textContent = formatCurrency(value);
+
+                // Calculate potential funding amount (3x monthly revenue)
+                const potentialFunding = value * 3;
+                document.getElementById('approvalAmount').textContent = formatCurrency(potentialFunding);
+            });
+
+            // Validate current step
+            function validateCurrentStep() {
+                switch(currentStep) {
+                    case 1:
+                        const fundingAmount = document.getElementById('fundingAmount').value;
+                        return fundingAmount !== "";
+                    case 2:
+                        const companyName = document.getElementById('companyName').value;
+                        const companyType = document.getElementById('companyType').value;
+                        return companyName !== "" && companyType !== "";
+                    case 3:
+                        const revenue = parseInt(revenueSlider.value);
+                        return !isNaN(revenue) && revenue >= 5000;
+                    default:
+                        return true;
+                }
+            }
+
+            // Show validation error
+            function showError(message) {
+                const existingError = document.querySelector('.error-message');
+                if (existingError) {
+                    existingError.remove();
+                }
+
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message text-red-500 text-sm mt-2';
+                errorDiv.textContent = message;
+                
+                const currentStepElement = document.getElementById(`step${currentStep}`);
+                currentStepElement.appendChild(errorDiv);
+            }
+
+            // Handle next button
+            nextButton.addEventListener('click', function() {
+                if (!validateCurrentStep()) {
+                    showError('Please fill in all required fields');
+                    return;
+                }
+
+                if (currentStep === 2) {
+                    const companyName = document.getElementById('companyName').value;
+                    const companyType = document.getElementById('companyType').value;
+                    companyDisplay.textContent = `${companyName} (${companyType})`;
+                    companyApprovalDisplay.textContent = companyName;
+                }
+
+                if (currentStep === 3) {
+                    const revenue = parseInt(revenueSlider.value);
+                    const approvalAmount = formatCurrency(revenue * 3);
+                    document.getElementById('approvalAmount').textContent = approvalAmount;
+
+                    // Calculate and display monthly payment estimate
+                    const monthlyPayment = (revenue * 3) * 0.04; // Example: 4% monthly payment
+                    document.getElementById('repInfo').innerHTML = `
+                        <p class="text-blue-800 font-semibold mb-2">Estimated Monthly Payment:</p>
+                        <p class="text-2xl font-bold text-blue-600">${formatCurrency(monthlyPayment)}</p>
+                        <p class="text-sm text-blue-600 mt-2">Based on 4% of approved amount</p>
+                    `;
+                }
+
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    showStep(currentStep);
+                    updateStepIndicator(currentStep);
+
+                    // Update button text on last step
+                    if (currentStep === totalSteps) {
+                        nextButton.innerHTML = `
+                            Get Started
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        `;
+                    }
+                }
+            });
+
+            // Initialize slider value display
+            currentRevenueDisplay.textContent = formatCurrency(revenueSlider.value);
+        });
+    </script>
+</body>
+</html>
