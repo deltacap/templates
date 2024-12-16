@@ -369,196 +369,209 @@
         </footer>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Rep profiles array
-            const repProfiles = [
-                {
-                    name: "Max Kramer",
-                    title: "Senior Funding Specialist",
-                    phone: "(888) 555-0123",
-                    email: "max@deltacapitalgroup.com",
-                    photo: "rep-photo.png"
-                },
-                {
-                    name: "Sarah Chen",
-                    title: "Senior Account Executive",
-                    phone: "(888) 555-0124",
-                    email: "sarah@deltacapitalgroup.com",
-                    photo: "sarah-photo.png"
-                },
-                // Add more rep profiles as needed
-            ];
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const repProfiles = [
+            {
+                name: "Max Kramer",
+                title: "Senior Funding Specialist",
+                phone: "(888) 555-0123",
+                email: "max@deltacapitalgroup.com",
+                photo: "rep-photo.png"
+            },
+            {
+                name: "Sarah Chen",
+                title: "Senior Account Executive",
+                phone: "(888) 555-0124",
+                email: "sarah@deltacapitalgroup.com",
+                photo: "sarah-photo.png"
+            },
+        ];
 
-            let currentRepIndex = 0;
-            let currentStep = 1;
-            const totalSteps = 4;
-            const nextButton = document.getElementById('nextStep');
-            const revenueSlider = document.getElementById('revenueSlider');
-            const currentRevenue = document.getElementById('currentRevenue');
+        let currentRepIndex = 0;
+        let currentStep = 1;
+        const totalSteps = 4;
+        const nextButton = document.getElementById('nextStep');
+        const revenueSlider = document.getElementById('revenueSlider');
+        const currentRevenue = document.getElementById('currentRevenue');
+        const companyTypeSelect = document.getElementById('companyType');
 
-            // Format currency function
-            const formatCurrency = (value) => {
-                return new Intl.NumberFormat('en-US', {
-                    style: 'currency',
-                    currency: 'USD',
-                    maximumFractionDigits: 0
-                }).format(value);
-            };
+        // Format currency function
+        const formatCurrency = (value) => {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                maximumFractionDigits: 0
+            }).format(value);
+        };
 
-            // Get next rep in rotation
-            function getNextRep() {
-                const rep = repProfiles[currentRepIndex];
-                currentRepIndex = (currentRepIndex + 1) % repProfiles.length;
-                return rep;
-            }
+        // Get next rep in rotation
+        function getNextRep() {
+            const rep = repProfiles[currentRepIndex];
+            currentRepIndex = (currentRepIndex + 1) % repProfiles.length;
+            return rep;
+        }
 
-            // Update revenue display when slider moves
-            revenueSlider.addEventListener('input', function() {
-                const value = parseInt(this.value);
-                currentRevenue.textContent = formatCurrency(value);
-                
-                // Update slider background
-                const percentage = ((value - this.min) / (this.max - this.min)) * 100;
-                this.style.backgroundSize = `${percentage}% 100%`;
+        // Update revenue display when slider moves
+        revenueSlider.addEventListener('input', function() {
+            const value = parseInt(this.value);
+            currentRevenue.textContent = formatCurrency(value);
+            
+            // Update slider background
+            const percentage = ((value - this.min) / (this.max - this.min)) * 100;
+            this.style.backgroundSize = `${percentage}% 100%`;
+        });
+
+        // Calculate approval amount with random multiplier
+        function calculateApprovalAmount(revenue) {
+            const multiplier = 2.8 + (Math.random() * 0.6); // Random between 2.8 and 3.4
+            return Math.round(revenue * multiplier);
+        }
+
+        // Validate current step
+        function isStepValid(step) {
+            const stepElement = document.getElementById(`step${step}`);
+            const requiredFields = stepElement.querySelectorAll('[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value) {
+                    isValid = false;
+                    field.classList.add('border-red-500');
+                } else {
+                    field.classList.remove('border-red-500');
+                }
             });
 
-            // Calculate approval amount with random multiplier
-            function calculateApprovalAmount(revenue) {
-                const multiplier = 2.8 + (Math.random() * 0.6); // Random between 2.8 and 3.4
-                return Math.round(revenue * multiplier);
-            }
+            return isValid;
+        }
 
-            // Validate current step
-            function isStepValid(step) {
-                const stepElement = document.getElementById(`step${step}`);
-                const requiredFields = stepElement.querySelectorAll('[required]');
-                let isValid = true;
-
-                requiredFields.forEach(field => {
-                    if (!field.value) {
-                        isValid = false;
-                        field.classList.add('border-red-500');
-                    } else {
-                        field.classList.remove('border-red-500');
-                    }
-                });
-
-                return isValid;
-            }
-
-            // Update step indicators
-            function updateStepIndicators(current) {
-                document.querySelectorAll('.step').forEach((step, index) => {
-                    if (index + 1 === current) {
-                        step.classList.add('active');
-                        step.classList.remove('completed');
-                    } else if (index + 1 < current) {
-                        step.classList.remove('active');
-                        step.classList.add('completed');
-                    } else {
-                        step.classList.remove('active', 'completed');
-                    }
-                });
-            }
-
-            // Show specified step
-            function showStep(step) {
-                document.querySelectorAll('.form-step').forEach(el => {
-                    el.classList.remove('active');
-                });
-                document.getElementById(`step${step}`).classList.add('active');
-                
-                updateButtonText(step);
-            }
-
-            // Update button text based on current step
-            function updateButtonText(step) {
-                if (step === totalSteps) {
-                    nextButton.innerHTML = `
-                        Submit Application
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                    `;
+        // Update step indicators
+        function updateStepIndicators(current) {
+            document.querySelectorAll('.step').forEach((step, index) => {
+                if (index + 1 === current) {
+                    step.classList.add('active');
+                    step.classList.remove('completed');
+                } else if (index + 1 < current) {
+                    step.classList.remove('active');
+                    step.classList.add('completed');
                 } else {
-                    nextButton.innerHTML = `
-                        Continue
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                    `;
+                    step.classList.remove('active', 'completed');
                 }
-            }
+            });
+        }
 
-            // Update rep information
-            function updateRepInfo(rep) {
-                const repInfoDiv = document.getElementById('repInfo');
-                repInfoDiv.innerHTML = `
-                    <div class="flex items-center gap-4">
-                        <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/${rep.photo}"
-                             alt="${rep.name}"
-                             class="w-20 h-20 rounded-full object-cover">
-                        <div>
-                            <h4 class="text-lg font-semibold">${rep.name}</h4>
-                            <p class="text-sm text-gray-600">${rep.title}</p>
-                            <div class="mt-2 space-y-1">
-                                <a href="tel:${rep.phone}" class="text-blue-600 hover:text-blue-800 block">
-                                    ${rep.phone}
-                                </a>
-                                <a href="mailto:${rep.email}" class="text-blue-600 hover:text-blue-800 block">
-                                    ${rep.email}
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+        // Show specified step
+        function showStep(step) {
+            document.querySelectorAll('.form-step').forEach(el => {
+                el.classList.remove('active');
+            });
+            document.getElementById(`step${step}`).classList.add('active');
+            
+            updateButtonText(step);
+        }
+
+        // Update button text based on current step
+        function updateButtonText(step) {
+            if (step === totalSteps) {
+                nextButton.innerHTML = `
+                    Submit Application
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                `;
+            } else {
+                nextButton.innerHTML = `
+                    Continue
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
                 `;
             }
+        }
 
-            // Handle form submission
-            async function handleSubmission() {
-                nextButton.innerHTML = '<span class="loading"></span> Processing...';
-                nextButton.disabled = true;
+        // Update revenue slider section title dynamically
+        function updateRevenueSection() {
+            const companyType = companyTypeSelect.value;
+            const titleElement = document.querySelector('#step3 h3');
+            if (companyType) {
+                titleElement.textContent = `${companyType}, what is your monthly revenue?`;
+            }
+        }
 
-                await new Promise(resolve => setTimeout(resolve, 1500));
+        // Update rep information
+        function updateRepInfo(rep) {
+            const repInfoDiv = document.getElementById('repInfo');
+            repInfoDiv.innerHTML = `
+                <div class="flex items-center gap-4">
+                    <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/${rep.photo}"
+                         alt="${rep.name}"
+                         class="w-20 h-20 rounded-full object-cover">
+                    <div>
+                        <h4 class="text-lg font-semibold">${rep.name}</h4>
+                        <p class="text-sm text-gray-600">${rep.title}</p>
+                        <div class="mt-2 space-y-1">
+                            <a href="tel:${rep.phone}" class="text-blue-600 hover:text-blue-800 block">
+                                ${rep.phone}
+                            </a>
+                            <a href="mailto:${rep.email}" class="text-blue-600 hover:text-blue-800 block">
+                                ${rep.email}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
 
-                const revenue = parseInt(revenueSlider.value);
-                const approvalAmount = calculateApprovalAmount(revenue);
-                
-                document.getElementById('approvalAmount').textContent = formatCurrency(approvalAmount);
-                
-                const assignedRep = getNextRep();
-                updateRepInfo(assignedRep);
-                
-                document.getElementById('approvalStep').classList.add('active');
-                document.querySelectorAll('.form-step').forEach(step => {
-                    if (step.id !== 'approvalStep') {
-                        step.classList.remove('active');
-                    }
-                });
+        // Handle form submission
+        async function handleSubmission() {
+            nextButton.innerHTML = '<span class="loading"></span> Processing...';
+            nextButton.disabled = true;
 
-                nextButton.disabled = false;
-                nextButton.innerHTML = 'Contact Your Funding Specialist';
-                nextButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-                nextButton.classList.add('bg-green-600', 'hover:bg-green-700');
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            const revenue = parseInt(revenueSlider.value);
+            const approvalAmount = calculateApprovalAmount(revenue);
+            
+            document.getElementById('approvalAmount').textContent = formatCurrency(approvalAmount);
+            
+            const assignedRep = getNextRep();
+            updateRepInfo(assignedRep);
+            
+            document.getElementById('approvalStep').classList.add('active');
+            document.querySelectorAll('.form-step').forEach(step => {
+                if (step.id !== 'approvalStep') {
+                    step.classList.remove('active');
+                }
+            });
+
+            nextButton.disabled = false;
+            nextButton.innerHTML = 'Contact Your Funding Specialist';
+            nextButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+            nextButton.classList.add('bg-green-600', 'hover:bg-green-700');
+        }
+
+        // Next button click handler
+        nextButton.addEventListener('click', async function() {
+            if (currentStep <= totalSteps && !isStepValid(currentStep)) {
+                return;
             }
 
-            // Next button click handler
-            nextButton.addEventListener('click', async function() {
-                if (currentStep <= totalSteps && !isStepValid(currentStep)) {
-                    return;
-                }
+            if (currentStep === totalSteps) {
+                await handleSubmission();
+                return;
+            }
 
-                if (currentStep === totalSteps) {
-                    await handleSubmission();
-                    return;
-                }
+            if (currentStep === 2) {
+                updateRevenueSection();
+            }
 
-                currentStep++;
-                showStep(currentStep);
-                updateStepIndicators(currentStep);
-            });
+            currentStep++;
+            showStep(currentStep);
+            updateStepIndicators(currentStep);
         });
-    </script>
+    });
+</script>
+
 </body>
 </html>
