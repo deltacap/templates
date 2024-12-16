@@ -369,8 +369,8 @@
         </footer>
     </div>
 
-   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
         const repProfiles = [
             {
                 name: "Max Kramer",
@@ -394,6 +394,7 @@
         const nextButton = document.getElementById('nextStep');
         const revenueSlider = document.getElementById('revenueSlider');
         const currentRevenue = document.getElementById('currentRevenue');
+        const companyNameInput = document.getElementById('companyName');
         const companyTypeSelect = document.getElementById('companyType');
 
         // Format currency function
@@ -410,40 +411,6 @@
             const rep = repProfiles[currentRepIndex];
             currentRepIndex = (currentRepIndex + 1) % repProfiles.length;
             return rep;
-        }
-
-        // Update revenue display when slider moves
-        revenueSlider.addEventListener('input', function() {
-            const value = parseInt(this.value);
-            currentRevenue.textContent = formatCurrency(value);
-            
-            // Update slider background
-            const percentage = ((value - this.min) / (this.max - this.min)) * 100;
-            this.style.backgroundSize = `${percentage}% 100%`;
-        });
-
-        // Calculate approval amount with random multiplier
-        function calculateApprovalAmount(revenue) {
-            const multiplier = 2.8 + (Math.random() * 0.6); // Random between 2.8 and 3.4
-            return Math.round(revenue * multiplier);
-        }
-
-        // Validate current step
-        function isStepValid(step) {
-            const stepElement = document.getElementById(`step${step}`);
-            const requiredFields = stepElement.querySelectorAll('[required]');
-            let isValid = true;
-
-            requiredFields.forEach(field => {
-                if (!field.value) {
-                    isValid = false;
-                    field.classList.add('border-red-500');
-                } else {
-                    field.classList.remove('border-red-500');
-                }
-            });
-
-            return isValid;
         }
 
         // Update step indicators
@@ -467,36 +434,47 @@
                 el.classList.remove('active');
             });
             document.getElementById(`step${step}`).classList.add('active');
-            
-            updateButtonText(step);
         }
 
-        // Update button text based on current step
-        function updateButtonText(step) {
-            if (step === totalSteps) {
-                nextButton.innerHTML = `
-                    Submit Application
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                `;
-            } else {
-                nextButton.innerHTML = `
-                    Continue
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                `;
-            }
-        }
-
-        // Update revenue slider section title dynamically
+        // Update the heading for Step 3 dynamically
         function updateRevenueSection() {
+            const companyName = companyNameInput.value;
             const companyType = companyTypeSelect.value;
             const titleElement = document.querySelector('#step3 h3');
-            if (companyType) {
-                titleElement.textContent = `${companyType}, what is your monthly revenue?`;
-            }
+            titleElement.textContent = `${companyName} (${companyType}), what is your monthly revenue?`;
+        }
+
+        // Automatically transition to the approval screen after revenue input
+        revenueSlider.addEventListener('input', function () {
+            const value = parseInt(this.value);
+            currentRevenue.textContent = formatCurrency(value);
+
+            // Update slider background
+            const percentage = ((value - this.min) / (this.max - this.min)) * 100;
+            this.style.backgroundSize = `${percentage}% 100%`;
+
+            // Automatically transition to approval screen
+            setTimeout(() => {
+                currentStep++;
+                showStep(currentStep);
+                handleApprovalScreen(value);
+                updateStepIndicators(currentStep);
+            }, 500);
+        });
+
+        // Handle approval screen logic
+        function handleApprovalScreen(revenue) {
+            const approvalAmount = calculateApprovalAmount(revenue);
+            document.getElementById('approvalAmount').textContent = formatCurrency(approvalAmount);
+
+            const assignedRep = getNextRep();
+            updateRepInfo(assignedRep);
+        }
+
+        // Calculate approval amount with random multiplier
+        function calculateApprovalAmount(revenue) {
+            const multiplier = 2.8 + (Math.random() * 0.6); // Random between 2.8 and 3.4
+            return Math.round(revenue * multiplier);
         }
 
         // Update rep information
@@ -530,40 +508,20 @@
 
             await new Promise(resolve => setTimeout(resolve, 1500));
 
-            const revenue = parseInt(revenueSlider.value);
-            const approvalAmount = calculateApprovalAmount(revenue);
-            
-            document.getElementById('approvalAmount').textContent = formatCurrency(approvalAmount);
-            
-            const assignedRep = getNextRep();
-            updateRepInfo(assignedRep);
-            
-            document.getElementById('approvalStep').classList.add('active');
-            document.querySelectorAll('.form-step').forEach(step => {
-                if (step.id !== 'approvalStep') {
-                    step.classList.remove('active');
-                }
-            });
-
-            nextButton.disabled = false;
-            nextButton.innerHTML = 'Contact Your Funding Specialist';
-            nextButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-            nextButton.classList.add('bg-green-600', 'hover:bg-green-700');
+            currentStep++;
+            showStep(currentStep);
+            updateStepIndicators(currentStep);
         }
 
         // Next button click handler
-        nextButton.addEventListener('click', async function() {
-            if (currentStep <= totalSteps && !isStepValid(currentStep)) {
-                return;
+        nextButton.addEventListener('click', async function () {
+            if (currentStep === 2) {
+                updateRevenueSection();
             }
 
             if (currentStep === totalSteps) {
                 await handleSubmission();
                 return;
-            }
-
-            if (currentStep === 2) {
-                updateRevenueSection();
             }
 
             currentStep++;
@@ -572,6 +530,7 @@
         });
     });
 </script>
+
 
 </body>
 </html>
