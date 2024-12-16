@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeltaCapital - Small Business Financing Made Simple</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+
+        .hero-section {
+            background: linear-gradient(rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-step {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .form-step.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #EBF5FF;
+            border-radius: 0.5rem;
+            font-size: 1.125rem;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus {
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            outline: none;
+        }
+
+        .form-input.error {
+            border-color: #EF4444;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .step {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: #E5E7EB;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 0.5rem;
+            color: #6B7280;
+            font-weight: 600;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .step::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #E5E7EB;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .step:last-child::after { display: none; }
+
+        .step.active {
+            background-color: #3B82F6;
+            color: white;
+        }
+
+        .step.completed {
+            background-color: #10B981;
+            color: white;
+        }
+
+        .step.completed::after {
+            background-color: #10B981;
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+
+        .error-message {
+            display: none;
+            color: #EF4444;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        .error-message.visible {
+            display: block;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 3px solid #3498db;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .revenue-display {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #3B82F6;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .approval-amount {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #10B981;
+            text-align: center;
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: #F0FDF4;
+            border-radius: 0.5rem;
+        }
+
+        .rep-info {
+            background-color: #F3F4F6;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+  <body>
+    <div class="min-h-screen bg-gray-50">
+        <!-- Navigation -->
+        <nav class="bg-white border-b">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center">
+                <img src="/api/placeholder/240/80" alt="DeltaCapital Logo" class="h-12">
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- Left Column -->
+                    <div class="text-left">
+                        <h1 class="text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                            Find the Perfect Funding for Your Small Business.
+                        </h1>
+                        <p class="text-xl text-gray-600 mb-8">
+                            Compare options, choose your amount, and get funded with rates as low as <span class="text-blue-600 font-bold">6.99% APR.</span>
+                        </p>
+                    </div>
+
+                    <!-- Right Column - Form -->
+                    <div>
+                        <div class="bg-white rounded-xl p-8 shadow-xl">
+                            <!-- Step Indicators -->
+                            <div class="step-indicator">
+                                <div class="step active" data-step="1">1</div>
+                                <div class="step" data-step="2">2</div>
+                                <div class="step" data-step="3">3</div>
+                                <div class="step" data-step="4">4</div>
+                                <div class="step" data-step="5">5</div>
+                            </div>
+
+                            <!-- Step 1: Funding Amount -->
+                            <div class="form-step active" id="step1">
+                                <div class="space-y-6">
+                                    <h3 class="text-xl font-semibold text-gray-900">
+                                        How much Funding Can You Use Currently?
+                                    </h3>
+                                    <div>
+                                        <select class="form-input form-select" id="fundingAmount" required>
+                                            <option value="">Select amount...</option>
+                                            <option value="25000">$25,000</option>
+                                            <option value="50000">$50,000</option>
+                                            <option value="100000">$100,000</option>
+                                            <option value="250000">$250,000</option>
+                                            <option value="500000">$500,000</option>
+                                            <option value="1000000">$1,000,000</option>
+                                        </select>
+                                        <div class="error-message" id="fundingAmountError">
+                                            Please select a funding amount
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          <!-- Step 2: Company Information -->
+                            <div class="form-step" id="step2">
+                                <div class="space-y-6">
+                                    <h3 class="text-xl font-semibold text-gray-900">
+                                        Company Information
+                                    </h3>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                                            Company Name
+                                        </label>
+                                        <input type="text" class="form-input" id="companyName" required>
+                                        <div class="error-message" id="companyNameError">
+                                            Please enter your company name
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                                            Company Type
+                                        </label>
+                                        <select class="form-input form-select" id="companyType" required>
+                                            <option value="">Select type...</option>
+                                            <option value="LLC">LLC</option>
+                                            <option value="Corporation">Corporation</option>
+                                            <option value="Sole Proprietorship">Sole Proprietorship</option>
+                                            <option value="Partnership">Partnership</option>
+                                        </select>
+                                        <div class="error-message" id="companyTypeError">
+                                            Please select your company type
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Monthly Revenue -->
+                            <div class="form-step" id="step3">
+                                <div class="space-y-6">
+                                    <h3 class="text-xl font-semibold text-gray-900">
+                                        Monthly Revenue for <span id="displayCompanyInfo"></span>
+                                    </h3>
+                                    <div class="revenue-display" id="currentRevenue">$5,000</div>
+                                    <div>
+                                        <input type="range" 
+                                               min="5000" 
+                                               max="1000000" 
+                                               step="5000" 
+                                               class="w-full" 
+                                               id="revenueSlider">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 4: Approval Amount -->
+                            <div class="form-step" id="step4">
+                                <div class="space-y-6 text-center">
+                                    <h3 class="text-xl font-semibold text-gray-900">
+                                        Congratulations! <span id="approvalCompanyInfo"></span>
+                                    </h3>
+                                    <div class="approval-amount" id="approvalAmount"></div>
+                                    <p class="text-gray-600">
+                                        You've been approved for funding! Complete the final step to get started.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Step 5: Contact Information -->
+                            <div class="form-step" id="step5">
+                                <div class="space-y-6">
+                                    <h3 class="text-xl font-semibold text-gray-900">
+                                        Contact Information
+                                    </h3>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                                            Full Name
+                                        </label>
+                                        <input type="text" class="form-input" id="fullName" required>
+                                        <div class="error-message" id="fullNameError">
+                                            Please enter your full name
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                                            Phone
+                                        </label>
+                                        <input type="tel" class="form-input" id="phone" required>
+                                        <div class="error-message" id="phoneError">
+                                            Please enter a valid phone number
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                                            Email
+                                        </label>
+                                        <input type="email" class="form-input" id="email" required>
+                                        <div class="error-message" id="emailError">
+                                            Please enter a valid email
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Success Step -->
+                            <div class="form-step" id="successStep">
+                                <div class="text-center">
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                                        Thank You!
+                                    </h3>
+                                    <p class="text-gray-600 mb-6">
+                                        Your application has been submitted successfully.
+                                    </p>
+                                    <div class="rep-info">
+                                        <h4 class="font-semibold mb-2">Your Assigned Representative:</h4>
+                                        <div id="repInfo"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Form Navigation -->
+                            <div class="mt-6">
+                                <button id="nextStep" class="w-full bg-blue-600 text-white p-4 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                 
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentStep = 1;
+            const totalSteps = 5;
+            
+            // DOM Elements
+            const nextButton = document.getElementById('nextStep');
+            const fundingAmount = document.getElementById('fundingAmount');
+            const revenueSlider = document.getElementById('revenueSlider');
+            const currentRevenue = document.getElementById('currentRevenue');
+            const companyName = document.getElementById('companyName');
+            const companyType = document.getElementById('companyType');
+            const displayCompanyInfo = document.getElementById('displayCompanyInfo');
+            const approvalCompanyInfo = document.getElementById('approvalCompanyInfo');
+            const approvalAmount = document.getElementById('approvalAmount');
+            
+            // Format currency
+            const formatCurrency = (value) => {
+                return new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    maximumFractionDigits: 0
+                }).format(value);
+            };
+
+            // Calculate approval amount based on revenue
+            const calculateApprovalAmount = (revenue) => {
+                const multiplier = Math.random() * (3.2 - 2.6) + 2.6; // Random between 2.6 and 3.2
+                return Math.floor(revenue * multiplier);
+            };
+
+            // Representative information
+            const representatives = [
+                { name: "Sarah Johnson", phone: "(555) 123-4567", email: "sarah.j@deltacapital.com" },
+                { name: "Michael Chen", phone: "(555) 234-5678", email: "michael.c@deltacapital.com" },
+                { name: "David Martinez", phone: "(555) 345-6789", email: "david.m@deltacapital.com" }
+            ];
+
+            // Get random representative
+            const getRandomRep = () => {
+                return representatives[Math.floor(Math.random() * representatives.length)];
+            };
+
+            // Show/hide error message
+            function showError(fieldId, show = true) {
+                const field = document.getElementById(fieldId);
+                const error = document.getElementById(fieldId + 'Error');
+                
+                if (field && error) {
+                    field.classList.toggle('error', show);
+                    error.classList.toggle('visible', show);
+                }
+            }
+
+            // Validate current step
+            function isStepValid(step) {
+                switch(step) {
+                    case 1:
+                        const amount = fundingAmount.value;
+                        showError('fundingAmount', !amount);
+                        return amount !== '';
+                        
+                    case 2:
+                        let valid = true;
+                        if (!companyName.value.trim()) {
+                            showError('companyName', true);
+                            valid = false;
+                        }
+                        if (!companyType.value) {
+                            showError('companyType', true);
+                            valid = false;
+                        }
+                        return valid;
+                        
+                    case 3:
+                        return parseInt(revenueSlider.value) >= 5000;
+                        
+                    case 4:
+                        return true;
+                        
+                    case 5:
+                        valid = true;
+                        ['fullName', 'email', 'phone'].forEach(field => {
+                            const value = document.getElementById(field).value.trim();
+                            if (!value) {
+                                showError(field, true);
+                                valid = false;
+                            }
+                        });
+                        return valid;
+                }
+                return true;
+            }
+
+            // Show specified step
+            function showStep(step) {
+                document.querySelectorAll('.form-step').forEach(el => {
+                    el.classList.remove('active');
+                });
+                
+                // Special handling for success step
+                const stepElement = step === 'success' 
+                    ? document.getElementById('successStep')
+                    : document.getElementById(`step${step}`);
+                    
+                stepElement.classList.add('active');
+                
+                // Update step indicators
+                document.querySelectorAll('.step').forEach((el, index) => {
+                    if (index + 1 === currentStep) {
+                        el.classList.add('active');
+                    } else if (index + 1 < currentStep) {
+                        el.classList.add('completed');
+                    } else {
+                        el.classList.remove('active', 'completed');
+                    }
+                });
+
+                // Update button text based on step
+                nextButton.textContent = currentStep === totalSteps ? 'Submit' : 'Continue';
+            }
+
+            // Handle form submission
+            async function handleSubmit() {
+                nextButton.innerHTML = '<span class="loading"></span>';
+                nextButton.disabled = true;
+
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Generate rep information
+                const rep = getRandomRep();
+                document.getElementById('repInfo').innerHTML = `
+                    <p class="mb-1"><strong>Name:</strong> ${rep.name}</p>
+                    <p class="mb-1"><strong>Phone:</strong> ${rep.phone}</p>
+                    <p><strong>Email:</strong> ${rep.email}</p>
+                `;
+                
+                showStep('success');
+                nextButton.style.display = 'none';
+            }
+
+            // Event Listeners
+            revenueSlider.addEventListener('input', function() {
+                currentRevenue.textContent = formatCurrency(this.value);
+            });
+
+            // Clear errors on input
+            document.querySelectorAll('.form-input').forEach(input => {
+                input.addEventListener('input', () => showError(input.id, false));
+            });
+
+            // Next button handler
+            nextButton.addEventListener('click', async () => {
+                if (!isStepValid(currentStep)) return;
+
+                if (currentStep === totalSteps) {
+                    await handleSubmit();
+                    return;
+                }
+
+                currentStep++;
+
+                // Special handling for step 3
+                if (currentStep === 3) {
+                    displayCompanyInfo.textContent = `${companyName.value} (${companyType.value})`;
+                }
+                
+                // Special handling for step 4
+                if (currentStep === 4) {
+                    const revenue = parseInt(revenueSlider.value);
+                    const approvedAmount = calculateApprovalAmount(revenue);
+                    approvalCompanyInfo.textContent = `${companyName.value} (${companyType.value})`;
+                    approvalAmount.textContent = `Approved for ${formatCurrency(approvedAmount)}`;
+                }
+
+                showStep(currentStep);
+            });
+
+            // Initialize revenue display
+            currentRevenue.textContent = formatCurrency(revenueSlider.value);
+        });
+    </script>
+</body>
+</html>
