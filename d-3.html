@@ -250,7 +250,7 @@ input[type="range"]::-webkit-slider-runnable-track {
                                 <div class="step" data-step="4">4</div>
                             </div>
 
-                          <!-- Step 1: Funding Amount -->
+                       <!-- Form Steps -->
 <div class="form-step active" id="step1">
     <div class="space-y-6">
         <div class="flex items-center gap-2 text-blue-600 mb-4">
@@ -271,7 +271,7 @@ input[type="range"]::-webkit-slider-runnable-track {
     </div>
 </div>
 
-<!-- Step 2: Monthly Revenue with Improved Slider -->
+<!-- Step 2: Monthly Revenue with Slider -->
 <div class="form-step" id="step2">
     <div class="space-y-6">
         <div class="flex items-center gap-2 text-blue-600 mb-4">
@@ -302,8 +302,48 @@ input[type="range"]::-webkit-slider-runnable-track {
     </div>
 </div>
 
-<!-- Step 3: Pre-Approval -->
+<!-- Step 3: Company & Contact Information -->
 <div class="form-step" id="step3">
+    <div class="space-y-6">
+        <div class="flex items-center gap-2 text-blue-600 mb-4">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+            <h3 class="text-xl font-semibold">Complete Your Application</h3>
+        </div>
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
+                <input type="text" class="form-input" id="companyName" placeholder="Enter company name" required>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Company Type</label>
+                <select class="form-input form-select" id="companyType" required>
+                    <option value="">Select type...</option>
+                    <option value="llc">LLC</option>
+                    <option value="corporation">Corporation</option>
+                    <option value="sole_proprietorship">Sole Proprietorship</option>
+                    <option value="partnership">Partnership</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                <input type="text" class="form-input" id="fullName" placeholder="Enter your full name" required>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                <input type="email" class="form-input" id="email" placeholder="Enter your email" required>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                <input type="tel" class="form-input" id="phone" placeholder="(xxx) xxx-xxxx" required>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Step 4: Approval Step -->
+<div class="form-step" id="approvalStep">
     <div class="space-y-6">
         <div class="bg-green-50 p-6 rounded-lg border border-green-200 text-center">
             <div class="text-3xl font-bold text-green-700 mb-3">
@@ -315,60 +355,11 @@ input[type="range"]::-webkit-slider-runnable-track {
                 You're pre-approved for funding!
             </p>
         </div>
-    </div>
-</div>
-
-<!-- Step 4: Company & Contact Information -->
-<div class="form-step" id="step4">
-    <div class="space-y-6">
-        <div class="flex items-center gap-2 text-blue-600 mb-4">
-            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-            </svg>
-            <h3 class="text-xl font-semibold">Complete Your Application</h3>
-        </div>
-        
-        <div class="space-y-4">
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
-                <input type="text" class="form-input" id="companyName" placeholder="Enter company name" required>
-            </div>
-            
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Company Type</label>
-                <select class="form-input form-select" id="companyType" required>
-                    <option value="">Select type...</option>
-                    <option value="llc">LLC</option>
-                    <option value="corporation">Corporation</option>
-                    <option value="sole_proprietorship">Sole Proprietorship</option>
-                    <option value="partnership">Partnership</option>
-                </select>
-            </div>
-
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                <input type="text" class="form-input" id="fullName" placeholder="Enter your full name" required>
-            </div>
-
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                <input type="email" class="form-input" id="email" placeholder="Enter your email" required>
-            </div>
-
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                <input type="tel" class="form-input" id="phone" placeholder="(xxx) xxx-xxxx" required>
-            </div>
+        <!-- Rep Information (Dynamically Populated) -->
+        <div id="repInfo" class="bg-blue-50 p-4 rounded-lg mt-6">
         </div>
     </div>
 </div>
-
-                                    <!-- Rep Information (Dynamically Populated) -->
-                                    <div id="repInfo" class="bg-blue-50 p-4 rounded-lg mt-6">
-                                    </div>
-                                </div>
-                            </div>
-
                             <!-- Form Navigation -->
                             <div class="mt-6" id="formNavigation">
                                 <button id="nextStep" class="w-full p-4 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium flex items-center justify-center gap-2 transition-colors">
@@ -438,22 +429,35 @@ input[type="range"]::-webkit-slider-runnable-track {
         document.addEventListener('DOMContentLoaded', function() {
             // Rep profiles array
             const repProfiles = [
-                {
-                    name: "Max Kramer",
-                    title: "Senior Funding Specialist",
-                    phone: "(888) 555-0123",
-                    email: "max@deltacapitalgroup.com",
-                    photo: "rep-photo.png"
-                },
-                {
-                    name: "Sarah Chen",
-                    title: "Senior Account Executive",
-                    phone: "(888) 555-0124",
-                    email: "sarah@deltacapitalgroup.com",
-                    photo: "sarah-photo.png"
-                },
-                // Add more rep profiles as needed
-            ];
+    {
+        name: "Max Kramer",
+        title: "Senior Funding Specialist",
+        phone: "(888) 555-0123",
+        email: "max@deltacapitalgroup.com",
+        photo: "rep-photo.png"
+    },
+    {
+        name: "Sarah Chen",
+        title: "Business Development Manager",
+        phone: "(888) 555-0124",
+        email: "sarah@deltacapitalgroup.com",
+        photo: "sarah-photo.png"
+    },
+    {
+        name: "James Rodriguez",
+        title: "Senior Account Executive",
+        phone: "(888) 555-0125",
+        email: "james@deltacapitalgroup.com",
+        photo: "james-photo.png"
+    },
+    {
+        name: "Lisa Thompson",
+        title: "Funding Specialist",
+        phone: "(888) 555-0126",
+        email: "lisa@deltacapitalgroup.com",
+        photo: "lisa-photo.png"
+    }
+];
 
             let currentRepIndex = 0;
             let currentStep = 1;
