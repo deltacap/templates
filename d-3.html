@@ -193,116 +193,119 @@
                         </div>
                     </div>
 
-                    <!-- Right Column - Form -->
-                    <div>
-                        <div class="bg-white rounded-xl p-8 shadow-2xl">
-                            <div class="step-indicator">
-                                <div class="step active" data-step="1">1</div>
-                                <div class="step" data-step="2">2</div>
-                                <div class="step" data-step="3">3</div>
-                                <div class="step" data-step="4">4</div>
-                            </div>
+                  <!-- Right Column - Form -->
+<div>
+    <div class="bg-white rounded-xl p-8 shadow-2xl">
+        <div class="step-indicator">
+            <div class="step active" data-step="1">1</div>
+            <div class="step" data-step="2">2</div>
+            <div class="step" data-step="3">3</div>
+            <div class="step" data-step="4">4</div>
+        </div>
 
-                            <!-- Step 1: Funding Amount -->
-                            <div class="form-step active" id="step1">
-                                <div class="space-y-6">
-                                    <div class="flex items-center gap-2 text-blue-600 mb-4">
-                                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                        <h3 class="text-xl font-semibold">How much Funding Can You Use Currently?</h3>
-                                    </div>
-                                    <select class="form-input form-select" id="fundingAmount" required>
-                                        <option value="">Select amount...</option>
-                                        <option value="25000">$25,000</option>
-                                        <option value="50000">$50,000</option>
-                                        <option value="100000">$100,000</option>
-                                        <option value="250000">$250,000</option>
-                                        <option value="500000">$500,000</option>
-                                        <option value="1000000">$1,000,000+</option>
-                                    </select>
-                                </div>
-                            </div>
+        <!-- Step 1: Funding Amount -->
+        <div class="form-step active" id="step1">
+            <div class="space-y-6">
+                <div class="flex items-center gap-2 text-blue-600 mb-4">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <h3 class="text-xl font-semibold">How much Funding Can You Use Currently?</h3>
+                </div>
+                <select class="form-input form-select" id="fundingAmount" required>
+                    <option value="">Select amount...</option>
+                    <option value="25000">$25,000</option>
+                    <option value="50000">$50,000</option>
+                    <option value="100000">$100,000</option>
+                    <option value="250000">$250,000</option>
+                    <option value="500000">$500,000</option>
+                    <option value="1000000">$1,000,000+</option>
+                </select>
+            </div>
+        </div>
 
-                            <!-- Step 2: Company Information -->
-                            <div class="form-step" id="step2">
-                                <div class="space-y-6">
-                                    <div class="flex items-center gap-2 text-blue-600 mb-4">
-                                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                                        </svg>
-                                        <h3 class="text-xl font-semibold">Company Information</h3>
-                                    </div>
-                                    <input type="text" class="form-input" id="companyName" placeholder="Company Name" required>
-                                    <select class="form-input form-select" id="companyType" required>
-                                        <option value="">Select company type...</option>
-                                        <option value="llc">LLC</option>
-                                        <option value="corporation">Corporation</option>
-                                        <option value="sole_proprietorship">Sole Proprietorship</option>
-                                        <option value="partnership">Partnership</option>
-                                    </select>
-                                </div>
-                            </div>
+        <!-- Step 2: Company Information -->
+        <div class="form-step" id="step2">
+            <div class="space-y-6">
+                <div class="flex items-center gap-2 text-blue-600 mb-4">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                    <h3 class="text-xl font-semibold">Company Information</h3>
+                </div>
+                <input type="text" class="form-input" id="companyName" placeholder="Company Name" required>
+                <select class="form-input form-select" id="companyType" required>
+                    <option value="">Select company type...</option>
+                    <option value="LLC">LLC</option>
+                    <option value="Corporation">Corporation</option>
+                    <option value="Sole Proprietorship">Sole Proprietorship</option>
+                    <option value="Partnership">Partnership</option>
+                </select>
+            </div>
+        </div>
 
-                            <!-- Step 3: Monthly Revenue -->
-                            <div class="form-step" id="step3">
-                                <div class="space-y-6">
-                                    <div class="flex items-center gap-2 text-blue-600 mb-4">
-                                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                                        </svg>
-                                        <h3 class="text-xl font-semibold">Monthly Revenue</h3>
-                                    </div>
-                                    <div class="space-y-4">
-                                        <input type="range" 
-                                               min="5000" 
-                                               max="5000000" 
-                                               step="5000" 
-                                               class="w-full h-2 bg-blue-100 rounded-lg appearance-none cursor-pointer" 
-                                               id="revenueSlider">
-                                        <div class="flex justify-between text-sm text-gray-600">
-                                            <span>$5,000</span>
-                                            <span id="currentRevenue" class="font-semibold">$0</span>
-                                            <span>$5,000,000</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+        <!-- Step 3: Monthly Revenue -->
+        <div class="form-step" id="step3">
+            <div class="space-y-6">
+                <div class="flex items-center gap-2 text-blue-600 mb-4">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                    <h3 class="text-xl font-semibold">Company Name (Type), what is your monthly revenue?</h3>
+                </div>
+                <div class="space-y-4">
+                    <input type="range" 
+                           min="5000" 
+                           max="1000000" 
+                           step="5000" 
+                           class="w-full h-2 bg-blue-100 rounded-lg appearance-none cursor-pointer" 
+                           id="revenueSlider">
+                    <div class="flex justify-between items-center text-gray-600">
+                        <span class="text-sm">$5,000</span>
+                        <span id="currentRevenue" class="text-2xl font-bold text-blue-700">$0</span>
+                        <span class="text-sm">$1,000,000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                            <!-- Step 4: Contact Information -->
-                            <div class="form-step" id="step4">
-                                <div class="space-y-6">
-                                    <div class="flex items-center gap-2 text-blue-600 mb-4">
-                                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                        </svg>
-                                        <h3 class="text-xl font-semibold">Your Information</h3>
-                                    </div>
-                                    <input type="text" class="form-input" id="fullName" placeholder="Full Name" required>
-                                    <input type="email" class="form-input" id="email" placeholder="Email Address" required>
-                                    <input type="tel" class="form-input" id="phone" placeholder="Phone Number" required>
-                                </div>
-                            </div>
+        <!-- Step 4: Contact Information -->
+        <div class="form-step" id="step4">
+            <div class="space-y-6">
+                <div class="flex items-center gap-2 text-blue-600 mb-4">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    <h3 class="text-xl font-semibold">Your Information</h3>
+                </div>
+                <input type="text" class="form-input" id="fullName" placeholder="Full Name" required>
+                <input type="email" class="form-input" id="email" placeholder="Email Address" required>
+                <input type="tel" class="form-input" id="phone" placeholder="Phone Number" required>
+            </div>
+        </div>
 
-                            <!-- Approval Step -->
-                            <div class="form-step" id="approvalStep">
-                                <div class="space-y-6">
-                                    <div class="bg-green-50 p-6 rounded-lg border border-green-200 text-center">
-                                        <div class="text-3xl font-bold text-green-700 mb-3">
-                                            Congratulations!
-                                        </div>
-                                        <div class="text-4xl font-bold text-green-800 mb-4" id="approvalAmount">
-                                        </div>
-                                        <p class="text-green-700 text-xl">
-                                            You're pre-approved for funding!
-                                        </p>
-                                    </div>
+        <!-- Approval Step -->
+        <div class="form-step" id="approvalStep">
+            <div class="space-y-6">
+                <div class="bg-green-50 p-6 rounded-lg border border-green-200 text-center">
+                    <div class="text-3xl font-bold text-green-700 mb-3">
+                        Congratulations!
+                    </div>
+                    <div class="text-4xl font-bold text-green-800 mb-4" id="approvalAmount">
+                    </div>
+                    <p class="text-green-700 text-xl">
+                        You're pre-approved for funding!
+                    </p>
+                </div>
 
-                                    <!-- Rep Information (Dynamically Populated) -->
-                                    <div id="repInfo" class="bg-blue-50 p-4 rounded-lg mt-6">
-                                    </div>
-                                </div>
-                            </div>
+                <!-- Rep Information (Dynamically Populated) -->
+                <div id="repInfo" class="bg-blue-50 p-4 rounded-lg mt-6">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
                             <!-- Form Navigation -->
                             <div class="mt-6" id="formNavigation">
