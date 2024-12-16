@@ -208,14 +208,14 @@
                         </div>
                     </div>
 
-                   <!-- Right Column - Form -->
+                  <!-- Right Column - Form -->
 <div>
     <div class="bg-white rounded-xl p-8 shadow-2xl">
-        <div class="step-indicator">
-            <div class="step active" data-step="1">1</div>
-            <div class="step" data-step="2">2</div>
-            <div class="step" data-step="3">3</div>
-            <div class="step" data-step="4">4</div>
+        <div class="step-indicator flex justify-between mb-6">
+            <div class="step" data-step="1">Step 1: Funding Amount</div>
+            <div class="step" data-step="2">Step 2: Company Information</div>
+            <div class="step" data-step="3">Step 3: Monthly Revenue</div>
+            <div class="step" data-step="4">Step 4: Approval</div>
         </div>
 
         <!-- Step 1: Funding Amount -->
@@ -273,20 +273,8 @@
             </div>
         </div>
 
-        <!-- Step 4: Contact Information -->
+        <!-- Step 4: Approval Step -->
         <div class="form-step" id="step4">
-            <div class="space-y-6">
-                <div class="flex items-center gap-2 text-blue-600 mb-4">
-                    <h3 class="text-xl font-semibold">Your Information</h3>
-                </div>
-                <input type="text" class="form-input" id="fullName" placeholder="Full Name" required>
-                <input type="email" class="form-input" id="email" placeholder="Email Address" required>
-                <input type="tel" class="form-input" id="phone" placeholder="Phone Number" required>
-            </div>
-        </div>
-
-        <!-- Approval Step -->
-        <div class="form-step" id="approvalStep">
             <div class="space-y-6">
                 <div class="bg-green-50 p-6 rounded-lg border border-green-200 text-center">
                     <div class="text-3xl font-bold text-green-700 mb-3">Congratulations!</div>
@@ -365,7 +353,8 @@
         </footer>
     </div>
 
-    <script>
+    
+<script>
     document.addEventListener('DOMContentLoaded', function() {
         let currentStep = 1;
         const totalSteps = 4;
@@ -396,6 +385,12 @@
         revenueSlider.addEventListener('input', function() {
             const value = parseInt(this.value);
             currentRevenueDisplay.textContent = formatCurrency(value);
+
+            if (currentStep === 3) {
+                const approvalAmount = formatCurrency(value * 3);
+                document.getElementById('approvalAmount').textContent = approvalAmount;
+                document.getElementById('approvalStep').classList.add('active');
+            }
         });
 
         // Handle next button
