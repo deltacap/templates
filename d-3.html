@@ -35,36 +35,6 @@
             opacity: 1;
         }
 
-        /* Slider Styles */
-        input[type="range"] {
-            -webkit-appearance: none;
-            height: 8px;
-            background: #EBF5FF;
-            border-radius: 4px;
-            background-image: linear-gradient(#3B82F6, #3B82F6);
-            background-repeat: no-repeat;
-        }
-
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            height: 24px;
-            width: 24px;
-            border-radius: 50%;
-            background: #3B82F6;
-            cursor: pointer;
-            border: 3px solid white;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        input[type="range"]::-webkit-slider-thumb:hover {
-            box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.1);
-            transform: scale(1.1);
-        }
-
-        input[type="range"]::-webkit-slider-runnable-track {
-            background: transparent;
-        }
-
         .step-indicator {
             display: flex;
             justify-content: center;
@@ -113,49 +83,11 @@
         .step.completed::after {
             background-color: #10B981;
         }
-
-        .loading {
-            display: inline-block;
-            width: 1.5rem;
-            height: 1.5rem;
-            border: 3px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 3px solid #3498db;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .form-select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-            background-position: right 0.5rem center;
-            background-repeat: no-repeat;
-            background-size: 1.5em 1.5em;
-            padding-right: 2.5rem;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #EBF5FF;
-            border-radius: 0.5rem;
-            font-size: 1.125rem;
-            transition: all 0.2s;
-        }
-
-        .form-input:focus {
-            border-color: #3B82F6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-            outline: none;
-        }
     </style>
 </head>
 <body>
     <div class="hero-background min-h-screen">
+        <!-- Navigation -->
         <nav class="bg-white border-b">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
                 <div class="flex items-center">
@@ -166,6 +98,7 @@
             </div>
         </nav>
 
+        <!-- Hero Section -->
         <div class="hero-section min-h-[600px] py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -179,51 +112,50 @@
                                 Over 95% Approved!
                             </span>
                         </p>
-                        <div class="flex items-center space-x-8 mb-8">
-                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/forbes-badge.jpg" 
-                                 alt="Forbes Badge" 
-                                 class="h-16">
-                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/trustpilot-logo.png" 
-                                 alt="Trustpilot Rating" 
-                                 class="h-16">
-                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/bbb-badge.png" 
-                                 alt="BBB Accredited" 
-                                 class="h-16">
-                        </div>
                     </div>
 
+                    <!-- Form Section -->
                     <div>
                         <div class="bg-white rounded-xl p-8 shadow-2xl">
+                            <!-- Step Indicator -->
                             <div class="step-indicator">
                                 <div class="step active" data-step="1">1</div>
                                 <div class="step" data-step="2">2</div>
                                 <div class="step" data-step="3">3</div>
                             </div>
 
-                            <!-- Form Steps -->
+                            <!-- Step 1 -->
                             <div class="form-step active" id="step1">
-                                <div class="space-y-6">
-                                    <h3 class="text-xl font-semibold">How much Funding Can You Use Currently?</h3>
-                                    <select class="form-input form-select" id="fundingAmount" required>
-                                        <option value="">Select amount needed...</option>
-                                        <option value="25000">$25,000</option>
-                                        <option value="50000">$50,000</option>
-                                        <option value="100000">$100,000</option>
-                                        <option value="250000">$250,000</option>
-                                        <option value="500000">$500,000</option>
-                                        <option value="1000000">$1,000,000+</option>
-                                    </select>
-                                </div>
+                                <h3 class="text-xl font-semibold">How much funding do you need?</h3>
+                                <select class="form-input form-select" id="fundingAmount" required>
+                                    <option value="">Select amount...</option>
+                                    <option value="25000">$25,000</option>
+                                    <option value="50000">$50,000</option>
+                                    <option value="100000">$100,000</option>
+                                    <option value="250000">$250,000</option>
+                                    <option value="500000">$500,000</option>
+                                    <option value="1000000">$1,000,000+</option>
+                                </select>
                             </div>
 
+                            <!-- Step 2 -->
                             <div class="form-step" id="step2">
-                                <h3 class="text-xl font-semibold">What's Your Monthly Revenue?</h3>
+                                <h3 class="text-xl font-semibold">What is your monthly revenue?</h3>
                                 <input type="range" min="5000" max="5000000" step="5000" id="revenueSlider" class="w-full">
-                                <p id="currentRevenue" class="text-blue-600 text-2xl font-bold mt-4">$0</p>
+                                <p id="currentRevenue" class="text-2xl font-bold text-blue-600 mt-4">$5,000</p>
                             </div>
 
+                            <!-- Step 3 -->
                             <div class="form-step" id="step3">
-                                <!-- Additional Steps -->
+                                <h3 class="text-xl font-semibold">Submit your application</h3>
+                                <p>Thank you! Your application is ready to submit.</p>
+                            </div>
+
+                            <!-- Navigation Button -->
+                            <div class="mt-6">
+                                <button id="nextStep" class="w-full p-4 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium">
+                                    Continue
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -232,71 +164,27 @@
         </div>
     </div>
 
+    <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const revenueSlider = document.getElementById('revenueSlider');
-            const currentRevenue = document.getElementById('currentRevenue');
             const nextButton = document.getElementById('nextStep');
-            const totalSteps = 3;
-            let currentStep = 1;
+            const steps = document.querySelectorAll('.form-step');
+            const stepIndicators = document.querySelectorAll('.step');
+            let currentStep = 0;
 
-            // Initialize Slider
-            const formatCurrency = (value) => {
-                return new Intl.NumberFormat('en-US', {
-                    style: 'currency',
-                    currency: 'USD',
-                    maximumFractionDigits: 0,
-                }).format(value);
-            };
-
-            revenueSlider.addEventListener('input', function () {
-                const value = parseInt(this.value);
-                currentRevenue.textContent = formatCurrency(value);
-
-                const percentage = ((value - this.min) / (this.max - this.min)) * 100;
-                this.style.backgroundSize = `${percentage}% 100%`;
-            });
-
-            // Step Validation
-            const isStepValid = (step) => {
-                if (step === 1) {
-                    return document.getElementById('fundingAmount').value !== '';
-                }
-                if (step === 2) {
-                    return parseInt(revenueSlider.value) >= 5000;
-                }
-                return true;
-            };
-
-            // Step Navigation
-            const showStep = (step) => {
-                document.querySelectorAll('.form-step').forEach((stepDiv, index) => {
-                    stepDiv.classList.toggle('active', index + 1 === step);
-                });
-
-                document.querySelectorAll('.step').forEach((stepIndicator, index) => {
-                    stepIndicator.classList.toggle('active', index + 1 === step);
-                    stepIndicator.classList.toggle('completed', index + 1 < step);
-                });
-
-                nextButton.textContent = step === totalSteps ? 'Submit Application' : 'Continue';
-            };
-
-            nextButton.addEventListener('click', function () {
-                if (!isStepValid(currentStep)) {
-                    alert('Please complete the required fields before proceeding.');
-                    return;
-                }
-
-                if (currentStep < totalSteps) {
+            nextButton.addEventListener('click', () => {
+                if (currentStep < steps.length - 1) {
+                    steps[currentStep].classList.remove('active');
+                    stepIndicators[currentStep].classList.remove('active');
+                    stepIndicators[currentStep].classList.add('completed');
                     currentStep++;
-                    showStep(currentStep);
+                    steps[currentStep].classList.add('active');
+                    stepIndicators[currentStep].classList.add('active');
+                    nextButton.textContent = currentStep === steps.length - 1 ? 'Submit Application' : 'Continue';
                 } else {
                     alert('Application Submitted!');
                 }
             });
-
-            showStep(currentStep);
         });
     </script>
 </body>
