@@ -7,7 +7,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
+        
         body {
             font-family: 'Inter', sans-serif;
         }
@@ -35,6 +35,23 @@
             opacity: 1;
         }
 
+        /* Form Input Styles */
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #EBF5FF;
+            border-radius: 0.5rem;
+            font-size: 1.125rem;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus {
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            outline: none;
+        }
+
+        /* Step Indicator Styles */
         .step-indicator {
             display: flex;
             justify-content: center;
@@ -52,6 +69,7 @@
             margin: 0 0.5rem;
             color: #6B7280;
             font-weight: 600;
+            transition: all 0.2s;
             position: relative;
         }
 
@@ -83,6 +101,58 @@
         .step.completed::after {
             background-color: #10B981;
         }
+/* Slider Styles */
+        input[type="range"] {
+            -webkit-appearance: none;
+            height: 12px;
+            border-radius: 6px;
+            background: #EBF5FF;
+            background-image: linear-gradient(#3B82F6, #3B82F6);
+            background-repeat: no-repeat;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #3B82F6;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.2s ease-in-out;
+            border: 3px solid white;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.1);
+            transform: scale(1.1);
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 3px solid #3498db;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Select Input Style */
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
     </style>
 </head>
 <body>
@@ -98,11 +168,12 @@
             </div>
         </nav>
 
-        <!-- Hero Section -->
+        <!-- Hero Section with Form -->
         <div class="hero-section min-h-[600px] py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
+                    <!-- Left Column -->
+                    <div class="text-left">
                         <h1 class="text-5xl font-bold text-gray-900 mb-6 leading-tight">
                             Find the perfect Funding for your small business.
                         </h1>
@@ -112,49 +183,153 @@
                                 Over 95% Approved!
                             </span>
                         </p>
+                        
+                        <!-- Trust Badges -->
+                        <div class="flex items-center space-x-8 mb-8">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/forbes-badge.jpg" 
+                                 alt="Forbes Badge" 
+                                 class="h-16">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/trustpilot-logo.png" 
+                                 alt="Trustpilot Rating" 
+                                 class="h-16">
+                            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/bbb-badge.png" 
+                                 alt="BBB Accredited" 
+                                 class="h-16">
+                        </div>
                     </div>
 
-                    <!-- Form Section -->
+<!-- Right Column - Form -->
                     <div>
                         <div class="bg-white rounded-xl p-8 shadow-2xl">
-                            <!-- Step Indicator -->
+                            <!-- Step Indicators -->
                             <div class="step-indicator">
                                 <div class="step active" data-step="1">1</div>
                                 <div class="step" data-step="2">2</div>
                                 <div class="step" data-step="3">3</div>
                             </div>
 
-                            <!-- Step 1 -->
+                            <!-- Step 1: Funding Amount -->
                             <div class="form-step active" id="step1">
-                                <h3 class="text-xl font-semibold">How much funding do you need?</h3>
-                                <select class="form-input form-select" id="fundingAmount" required>
-                                    <option value="">Select amount...</option>
-                                    <option value="25000">$25,000</option>
-                                    <option value="50000">$50,000</option>
-                                    <option value="100000">$100,000</option>
-                                    <option value="250000">$250,000</option>
-                                    <option value="500000">$500,000</option>
-                                    <option value="1000000">$1,000,000+</option>
-                                </select>
+                                <div class="space-y-6">
+                                    <div class="flex items-center gap-2 text-blue-600 mb-4">
+                                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <h3 class="text-xl font-semibold">How much Funding Can You Use Currently?</h3>
+                                    </div>
+                                    <select class="form-input form-select" id="fundingAmount" required>
+                                        <option value="">Select amount needed...</option>
+                                        <option value="25000">$25,000</option>
+                                        <option value="50000">$50,000</option>
+                                        <option value="100000">$100,000</option>
+                                        <option value="250000">$250,000</option>
+                                        <option value="500000">$500,000</option>
+                                        <option value="1000000">$1,000,000+</option>
+                                    </select>
+                                </div>
                             </div>
 
-                            <!-- Step 2 -->
+                            <!-- Step 2: Monthly Revenue -->
                             <div class="form-step" id="step2">
-                                <h3 class="text-xl font-semibold">What is your monthly revenue?</h3>
-                                <input type="range" min="5000" max="5000000" step="5000" id="revenueSlider" class="w-full">
-                                <p id="currentRevenue" class="text-2xl font-bold text-blue-600 mt-4">$5,000</p>
+                                <div class="space-y-6">
+                                    <div class="flex items-center gap-2 text-blue-600 mb-4">
+                                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                        </svg>
+                                        <h3 class="text-xl font-semibold">What's Your Monthly Revenue?</h3>
+                                    </div>
+                                    <div class="bg-gray-50 p-6 rounded-lg space-y-6">
+                                        <div class="text-center">
+                                            <span id="currentRevenue" class="text-3xl font-bold text-blue-600">$0</span>
+                                            <p class="text-sm text-gray-600 mt-1">Monthly Revenue</p>
+                                        </div>
+                                        <div class="space-y-2">
+                                            <input type="range" 
+                                                   min="5000" 
+                                                   max="5000000" 
+                                                   step="5000" 
+                                                   class="w-full h-3 bg-blue-100 rounded-lg appearance-none cursor-pointer" 
+                                                   id="revenueSlider">
+                                            <div class="flex justify-between text-xs text-gray-500 px-2">
+                                                <span>$5k</span>
+                                                <span>$2.5M</span>
+                                                <span>$5M</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <!-- Step 3 -->
+                            <!-- Step 3: Approval + Contact Form -->
                             <div class="form-step" id="step3">
-                                <h3 class="text-xl font-semibold">Submit your application</h3>
-                                <p>Thank you! Your application is ready to submit.</p>
+                                <div class="space-y-6">
+                                    <!-- Approval Display -->
+                                    <div class="bg-green-50 p-6 rounded-lg border border-green-200 text-center">
+                                        <div class="text-3xl font-bold text-green-700 mb-3">
+                                            Congratulations!
+                                        </div>
+                                        <div class="text-4xl font-bold text-green-800 mb-4" id="approvalAmount">
+                                        </div>
+                                        <p class="text-green-700 text-xl mb-4">
+                                            You're pre-approved for funding!
+                                        </p>
+                                    </div>
+
+                                    <!-- Contact Form -->
+                                    <div class="space-y-4 mt-6">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
+                                            <input type="text" class="form-input" id="companyName" placeholder="Enter company name" required>
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">Company Type</label>
+                                            <select class="form-input form-select" id="companyType" required>
+                                                <option value="">Select type...</option>
+                                                <option value="llc">LLC</option>
+                                                <option value="corporation">Corporation</option>
+                                                <option value="sole_proprietorship">Sole Proprietorship</option>
+                                                <option value="partnership">Partnership</option>
+                                            </select>
+                                        </div>
+
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                            <input type="text" class="form-input" id="fullName" placeholder="Enter your full name" required>
+                                        </div>
+
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                            <input type="email" class="form-input" id="email" placeholder="Enter your email" required>
+                                        </div>
+
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                            <input type="tel" class="form-input" id="phone" placeholder="(xxx) xxx-xxxx" required>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <!-- Navigation Button -->
-                            <div class="mt-6">
-                                <button id="nextStep" class="w-full p-4 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium">
-                                    Continue
+                            <!-- Rep Assignment Step -->
+                            <div class="form-step" id="repStep">
+                                <div class="text-center mb-6">
+                                    <h3 class="text-2xl font-bold text-gray-900">Thank You for Your Application!</h3>
+                                    <p class="text-lg text-gray-600 mt-2">Your dedicated funding specialist will be in touch shortly.</p>
+                                </div>
+                                <div id="repInfo" class="bg-blue-50 p-6 rounded-lg">
+                                    <!-- Rep info populated dynamically -->
+                                </div>
+                            </div>
+                                                        <!-- Navigation Buttons -->
+                            <div class="flex justify-between mt-6">
+                                <button id="prevBtn" 
+                                        class="hidden bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
+                                    Previous
+                                </button>
+                                <button id="nextBtn" 
+                                        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                                    Next
                                 </button>
                             </div>
                         </div>
@@ -162,30 +337,84 @@
                 </div>
             </div>
         </div>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white py-6">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center">
+                    <p class="text-sm">© 2024 Delta Capital Group. All rights reserved.</p>
+                    <ul class="flex space-x-4">
+                        <li><a href="#" class="hover:underline">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:underline">Terms of Service</a></li>
+                        <li><a href="#" class="hover:underline">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <!-- JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const nextButton = document.getElementById('nextStep');
-            const steps = document.querySelectorAll('.form-step');
-            const stepIndicators = document.querySelectorAll('.step');
-            let currentStep = 0;
+        // Variables
+        const steps = document.querySelectorAll('.form-step');
+        const stepIndicators = document.querySelectorAll('.step');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const fundingAmount = document.getElementById('fundingAmount');
+        const revenueSlider = document.getElementById('revenueSlider');
+        const currentRevenue = document.getElementById('currentRevenue');
+        const approvalAmount = document.getElementById('approvalAmount');
+        const repInfo = document.getElementById('repInfo');
+        let currentStep = 0;
 
-            nextButton.addEventListener('click', () => {
-                if (currentStep < steps.length - 1) {
-                    steps[currentStep].classList.remove('active');
-                    stepIndicators[currentStep].classList.remove('active');
-                    stepIndicators[currentStep].classList.add('completed');
-                    currentStep++;
-                    steps[currentStep].classList.add('active');
-                    stepIndicators[currentStep].classList.add('active');
-                    nextButton.textContent = currentStep === steps.length - 1 ? 'Submit Application' : 'Continue';
-                } else {
-                    alert('Application Submitted!');
-                }
+        // Update Form Step
+        function updateStep() {
+            steps.forEach((step, index) => {
+                step.classList.toggle('active', index === currentStep);
             });
+            stepIndicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentStep);
+                indicator.classList.toggle('completed', index < currentStep);
+            });
+            prevBtn.style.display = currentStep > 0 ? 'inline-block' : 'none';
+            nextBtn.textContent = currentStep === steps.length - 1 ? 'Submit' : 'Next';
+        }
+
+        // Handle Next Button Click
+        nextBtn.addEventListener('click', () => {
+            if (currentStep === steps.length - 1) {
+                // Submit Logic
+                repInfo.innerHTML = `
+                    <div class="text-lg">
+                        <strong>Rep Name:</strong> John Doe<br>
+                        <strong>Email:</strong> john.doe@deltacapitalgroup.com<br>
+                        <strong>Phone:</strong> (888) 213-7118
+                    </div>
+                `;
+                steps[currentStep].classList.remove('active');
+                document.getElementById('repStep').classList.add('active');
+                nextBtn.style.display = 'none';
+                prevBtn.style.display = 'none';
+            } else {
+                currentStep++;
+                updateStep();
+            }
         });
+
+        // Handle Previous Button Click
+        prevBtn.addEventListener('click', () => {
+            currentStep--;
+            updateStep();
+        });
+
+        // Revenue Slider Update
+        revenueSlider.addEventListener('input', () => {
+            currentRevenue.textContent = `$${parseInt(revenueSlider.value).toLocaleString()}`;
+            approvalAmount.textContent = `$${(parseInt(revenueSlider.value) * 0.5).toLocaleString()}`;
+        });
+
+        // Initial Render
+        updateStep();
     </script>
 </body>
 </html>
