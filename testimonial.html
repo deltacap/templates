@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delta Capital - Small Business Funding</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.5;
+            color: #1a1a1a;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            border-bottom: 1px solid #eee;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            height: 48px;
+        }
+
+        .hero {
+            background-color: #f9fafb;
+            padding: 4rem 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: #111827;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: #4b5563;
+        }
+
+        .success-banner {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Application Card */
+        .application-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #eee;
+        }
+
+        /* Testimonial Styles */
+        .testimonial-widget {
+            margin-top: 2rem;
+            background: white;
+            border-radius: 0.75rem;
+            border: 1px solid #eee;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-header {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(76, 175, 80, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            margin-bottom: 1rem;
+        }
+
+        .star-rating {
+            color: #4CAF50;
+            margin-right: 0.5rem;
+        }
+
+        .testimonial-badge-text {
+            color: #4CAF50;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .testimonial-content {
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .testimonial-text {
+            font-size: 1.125rem;
+            color: #374151;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .testimonial-meta {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .dot-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 50%;
+            background: #d1d5db;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .dot.active {
+            background: #4CAF50;
+            transform: scale(1.1);
+        }
+
+        .trust-badges {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        /* Form Elements */
+        .step-number {
+            width: 2rem;
+            height: 2rem;
+            background: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+        }
+
+        .select-wrapper {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+
+        .select-wrapper select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            appearance: none;
+            font-size: 1rem;
+        }
+
+        .select-wrapper::after {
+            content: '▼';
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6b7280;
+            pointer-events: none;
+            font-size: 0.8rem;
+        }
+
+        .continue-btn {
+            width: 100%;
+            background: #3b82f6;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .continue-btn:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <img src="logo.png" alt="Delta Capital" class="logo">
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1 class="hero-title">Find the perfect Funding for your small business.</h1>
+                    <p class="hero-subtitle">Compare options, choose your amount, and get funded with rates as low as <strong style="color: #3b82f6">6.99% APR.</strong></p>
+                    <div class="success-banner">🚀 98% of Submissions Approved!</div>
+                    <p class="hero-subtitle">Apply now and secure the funding your business deserves.</p>
+
+                    <!-- Testimonial Widget -->
+                    <div class="testimonial-widget">
+                        <div class="testimonial-header">
+                            <span class="star-rating">★★★★★</span>
+                            <span class="testimonial-badge-text">Trusted by 10,000+ Businesses</span>
+                        </div>
+
+                        <div class="testimonial-content">
+                            <div class="star-rating">★★★★★</div>
+                            <p class="testimonial-text" id="testimonial-text"></p>
+                            <p class="testimonial-author" id="testimonial-author"></p>
+                            <p class="testimonial-meta" id="testimonial-meta"></p>
+                        </div>
+                        
+                        <div class="dot-indicators" id="dot-indicators"></div>
+                    </div>
+
+                    <div class="trust-badges">
+                        <img src="forbes.png" alt="Forbes" height="40">
+                        <img src="trustpilot.png" alt="Trustpilot" height="40">
+                        <img src="bbb.png" alt="BBB Accredited" height="40">
+                    </div>
+                </div>
+
+                <div class="application-card">
+                    <div>
+                        <span class="step-number">1</span>
+                        <span style="font-size: 1.125rem; font-weight: 500">How much Funding Can You Use Currently?</span>
+                    </div>
+                    
+                    <div class="select-wrapper">
+                        <select>
+                            <option value="">Select amount...</option>
+                            <option value="25000">$25,000</option>
+                            <option value="50000">$50,000</option>
+                            <option value="100000">$100,000</option>
+                            <option value="250000">$250,000+</option>
+                        </select>
+                    </div>
+
+                    <button class="continue-btn">Continue →</button>
+                    
+                    <p style="text-align: center; color: #6b7280; font-size: 0.875rem; margin-top: 1rem">
+                        Your information is secure and will not affect your credit score.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Testimonial Data
+        const testimonials = [
+            {
+                text: "Got approved in under 24 hours! The process was incredibly smooth and the rates were exactly as advertised.",
+                author: "Sarah M.",
+                meta: "Retail Store • $75,000 Funded"
+            },
+            {
+                text: "Delta Capital made expanding my business possible. Their team was professional and the funding was fast.",
+                author: "Michael R.",
+                meta: "Restaurant • $150,000 Funded"
+            },
+            {
+                text: "Best rates I could find anywhere. The application process was straightforward and funding was quick.",
+                author: "Jennifer K.",
+                meta: "E-commerce • $50,000 Funded"
+            }
+        ];
+
+        let currentTestimonialIndex = 0;
+        
+        // DOM elements
+        const testimonialText = document.getElementById('testimonial-text');
+        const testimonialAuthor = document.getElementById('testimonial-author');
+        const testimonialMeta = document.getElementById('testimonial-meta');
+        const dotIndicators = document.getElementById('dot-indicators');
+
+        // Create dot indicators
+        testimonials.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.className = `dot ${index === 0 ? 'active' : ''}`;
+            dot.addEventListener('click', () => showTestimonial(index));
+            dotIndicators.appendChild(dot);
+        });
+
+        function showTestimonial(index) {
+            const testimonial = testimonials[index];
+            testimonialText.textContent = `"${testimonial.text}"`;
+            testimonialAuthor.textContent = testimonial.author;
+            testimonialMeta.textContent = testimonial.meta;
+
+            // Update dots
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.className = `dot ${i === index ? 'active' : ''}`;
+            });
+
+            currentTestimonialIndex = index;
+        }
+
+        // Auto-rotate testimonials
+        function rotateTestimonials() {
+            currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+            showTestimonial(currentTestimonialIndex);
+        }
+
+        // Initialize first testimonial
+        showTestimonial(0);
+
+        // Start auto-rotation
+        setInterval(rotateTestimonials, 4000);
+    </script>
+</body>
+</html>
