@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Capital - Growth Funding</title>
+    
+    <style>
+        /* Modern CSS Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Variables */
+        :root {
+            --primary-blue: #2563eb;
+            --primary-blue-dark: #1d4ed8;
+            --primary-blue-light: #3b82f6;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: white;
+            color: var(--gray-800);
+            line-height: 1.5;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .header {
+            padding: 1rem 0;
+        }
+
+        .logo {
+            height: 32px;
+            width: auto;
+        }
+
+        .main-content {
+            display: flex;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+            gap: 4rem;
+            padding: 2rem 0;
+        }
+
+        .left-column {
+            flex: 1;
+            max-width: 560px;
+        }
+
+        .right-column {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Typography */
+        .heading-primary {
+            font-size: 3rem;
+            line-height: 1.2;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .heading-secondary {
+            font-size: 2rem;
+            color: var(--gray-700);
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+
+        .intro-text {
+            font-size: 1.125rem;
+            color: var(--gray-700);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        /* Form */
+        .form-container {
+            margin-top: 2rem;
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background-color: white;
+        }
+
+        .input-field::placeholder {
+            color: var(--gray-500);
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .input-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Checkbox */
+        .terms-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-input {
+            width: 1.125rem;
+            height: 1.125rem;
+            margin-right: 0.5rem;
+            accent-color: var(--primary-blue);
+        }
+
+        .terms-text {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .terms-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            margin-left: 0.25rem;
+        }
+
+        .terms-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Button */
+        .submit-button {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .submit-button:hover {
+            background-color: var(--primary-blue-dark);
+        }
+
+        .submit-button:disabled {
+            background-color: var(--gray-400);
+            cursor: not-allowed;
+        }
+
+        /* Footer text */
+        .footer-text {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .trust-badge img {
+            height: 32px;
+            width: auto;
+        }
+
+        .trust-badge span {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        /* Media Queries */
+        @media (max-width: 1024px) {
+            .main-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .left-column {
+                max-width: 100%;
+            }
+
+            .heading-primary {
+                font-size: 2.5rem;
+            }
+
+            .heading-secondary {
+                font-size: 1.75rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .input-row {
+                flex-direction: column;
+            }
+
+            .heading-primary {
+                font-size: 2rem;
+            }
+
+            .heading-secondary {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="https://raw.githubusercontent.com/deltacap/templates/main/assets/bc-logo.png" alt="Business Capital Logo" class="logo">
+        </header>
+
+        <main class="main-content">
+            <div class="left-column">
+                <h1 class="heading-primary">Business Capital</h1>
+                <h2 class="heading-secondary">Smart funding for growing businesses</h2>
+                
+                <p class="intro-text">
+                    Business Capital delivers <span class="highlight">fast, flexible, and fair</span> funding, 
+                    providing business owners with the capital they need to grow.
+                </p>
+
+                <p class="intro-text">
+                    Get up to <span class="highlight">$250K</span> in flexible financing, tailored for 
+                    growing businesses. Simple revenue-based repayment.
+                </p>
+
+                <form id="fundingForm" class="form-container">
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Business Email" required
+                            class="input-field" id="email">
+                    </div>
+                    
+                    <div class="input-row">
+                        <input type="url" placeholder="Business Website" required
+                            class="input-field" id="website">
+                        <input type="tel" placeholder="Phone Number" required
+                            class="input-field" id="phone">
+                    </div>
+
+                    <div class="terms-container">
+                        <input type="checkbox" id="terms" required class="checkbox-input">
+                        <label for="terms" class="terms-text">
+                            I agree to the<a href="#" class="terms-link">terms</a> and
+                            <a href="#" class="terms-link">privacy policy</a>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-button">Get Started</button>
+                    
+                    <p class="footer-text">
+                        Qualified businesses receive funding in as little as 48 hours
+                    </p>
+
+                    <div class="trust-badge">
+                        <img src="/api/placeholder/80/32" alt="BBB Rating">
+                        <span>A+ Rating</span>
+                    </div>
+                </form>
+            </div>
+
+            <div class="right-column">
+                <img src="/api/placeholder/500/500" alt="Business Growth Illustration" style="max-width: 100%; height: auto;">
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.getElementById('fundingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerText;
+            
+            submitButton.disabled = true;
+            submitButton.innerText = 'Processing...';
+            
+            setTimeout(() => {
+                alert('Thank you for your application! Our team will review it and contact you shortly.');
+                submitButton.disabled = false;
+                submitButton.innerText = originalText;
+                this.reset();
+            }, 1500);
+        });
+
+        const inputs = document.querySelectorAll('.input-field');
+        inputs.forEach(input => {
+            input.addEventListener('invalid', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#ef4444';
+            });
+            
+            input.addEventListener('input', function() {
+                this.style.borderColor = '';
+            });
+        });
+    </script>
+</body>
+</html>
