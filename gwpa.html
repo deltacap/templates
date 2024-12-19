@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Pre-Approval - Goldwater Capital</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            background: white;
+            max-width: 600px;
+            width: 100%;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #374151;
+        }
+
+        .value-display {
+            float: right;
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: #f97316;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 9999px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #f97316;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            background: #ea580c;
+        }
+
+        .time-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+
+        .time-button {
+            padding: 0.75rem 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .time-button:hover {
+            background: #f3f4f6;
+        }
+
+        .time-button.active {
+            background: #f97316;
+            color: white;
+            border-color: #f97316;
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 0.875rem;
+        }
+
+        input[type="text"]:focus,
+        input[type="tel"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #f97316;
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 0.875rem;
+            background: #f97316;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        button[type="submit"]:hover {
+            background: #ea580c;
+        }
+
+        @media (max-width: 640px) {
+            .card {
+                padding: 1rem;
+            }
+
+            .input-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Quick Pre-Approval</h2>
+        <form id="preApprovalForm">
+            <div class="form-group">
+                <label>
+                    Monthly Revenue
+                    <span class="value-display" id="revenueDisplay">$92,260</span>
+                </label>
+                <input type="range" id="revenue" name="revenue" min="0" max="500000" value="92260">
+            </div>
+
+            <div class="form-group">
+                <label>
+                    Funding Needed
+                    <span class="value-display" id="fundingDisplay">$100,000</span>
+                </label>
+                <input type="range" id="funding" name="funding" min="10000" max="500000" value="100000">
+            </div>
+
+            <div class="form-group">
+                <label>Time in Business</label>
+                <div class="time-options" id="timeOptions">
+                    <button type="button" class="time-button" data-value="under-6mo">Under 6 months</button>
+                    <button type="button" class="time-button active" data-value="6mo-1yr">6mo - 1yr</button>
+                    <button type="button" class="time-button" data-value="1yr-2yrs">1yr - 2yrs</button>
+                    <button type="button" class="time-button" data-value="2yr-3yrs">2yr - 3yrs</button>
+                    <button type="button" class="time-button" data-value="3yr-5yrs">3yr - 5yrs</button>
+                    <button type="button" class="time-button" data-value="5yr-plus">5yr+</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    Credit Score Range
+                    <span class="value-display" id="creditDisplay">655</span>
+                </label>
+                <input type="range" id="creditScore" name="creditScore" min="300" max="850" value="655">
+            </div>
+
+            <div class="input-grid">
+                <input type="text" name="businessName" placeholder="Business Name" required>
+                <input type="tel" name="phoneNumber" placeholder="Phone Number" required>
+            </div>
+
+            <div class="form-group">
+                <input type="email" name="emailAddress" placeholder="Email Address" required>
+            </div>
+
+            <!-- Hidden Rep Information -->
+            <input type="hidden" name="repName" value="Joe Falic">
+            <input type="hidden" name="repCompany" value="Goldwater Capital">
+            <input type="hidden" name="repPhone" value="305-607-2100">
+            <input type="hidden" name="repEmail" value="joe@goldwatercapitalgroup.com">
+
+            <button type="submit">Submit Application</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Format currency function
+            function formatCurrency(value) {
+                if (value >= 500000) return '$500,000+';
+                return '$' + Number(value).toLocaleString();
+            }
+
+            // Update slider displays
+            function updateSliderDisplay(sliderId, displayId, format = true) {
+                const slider = document.getElementById(sliderId);
+                const display = document.getElementById(displayId);
+                
+                slider.addEventListener('input', function() {
+                    display.textContent = format ? formatCurrency(this.value) : this.value;
+                });
+            }
+
+            // Initialize sliders
+            updateSliderDisplay('revenue', 'revenueDisplay');
+            updateSliderDisplay('funding', 'fundingDisplay');
+            updateSliderDisplay('creditScore', 'creditDisplay', false);
+
+            // Time in business buttons
+            const timeOptions = document.getElementById('timeOptions');
+            timeOptions.addEventListener('click', function(e) {
+                if (e.target.classList.contains('time-button')) {
+                    timeOptions.querySelectorAll('.time-button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    e.target.classList.add('active');
+                }
+            });
+
+            // Form submission
+            const form = document.getElementById('preApprovalForm');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Collect form data
+                const formData = new FormData(form);
+                const selectedTimeButton = timeOptions.querySelector('.time-button.active');
+                formData.append('timeInBusiness', selectedTimeButton.dataset.value);
+
+                // Convert FormData to object
+                const data = Object.fromEntries(formData.entries());
+                
+                // Add submission timestamp
+                data.submissionDate = new Date().toISOString();
+                
+                // Log the data (replace with your actual submission logic)
+                console.log('Form submitted:', data);
+                alert('Pre-approval application submitted!');
+            });
+        });
+    </script>
+</body>
+</html>
